@@ -7,14 +7,13 @@
 </template> -->
 <template>
   <div>
-    <NavBar/>
+    <!-- <NavBar/> -->
     <main>
       <div class="container">
         <!-- slot работает как vue-router, показывает. Сюда будут передаваться страницы из папки pages -->
-            <slot />
+        <slot />
       </div>
     </main>
-
   </div>
 </template>
 
@@ -28,6 +27,4 @@
 // }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

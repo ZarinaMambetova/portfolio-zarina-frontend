@@ -21,7 +21,14 @@ const color = ref("red");
     или очень простые стили — выгоды минимальны.
   </div>
 
-  <NuxtLink to="/about">About</NuxtLink>
+  <NuxtLink
+    :transition="{
+      name: 'page',
+      mode: 'out-in',
+    }"
+    to="/"
+    >About</NuxtLink
+  >
 
   <!-- <script setup>
 import { definePageMeta } from '#imports'
@@ -62,6 +69,16 @@ definePageMeta({
 /* v-bind можно использовать сразу в стилях! */
 .text {
   color: v-bind(color);
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
 }
 </style>
 

@@ -1,3 +1,5 @@
+Nuxt 4, Typescript, vue 3.5, sass, json-server
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
@@ -38,6 +40,12 @@ yarn dev
 bun run dev
 ```
 
+Start json server on `http://localhost:3001`:
+
+````bash
+# npm
+npm run json-server
+
 ## Production
 
 Build the application for production:
@@ -54,7 +62,7 @@ yarn build
 
 # bun
 bun run build
-```
+````
 
 Locally preview production build:
 

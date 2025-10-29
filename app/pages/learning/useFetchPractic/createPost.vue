@@ -3,18 +3,11 @@ definePageMeta({
   title: "Создание записи",
 });
 
+const { storePost } = usePost();
 const post = reactive({
   title: "",
   body: "",
 });
-const storePost = async () => {
-  const res = await $fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "POST",
-    body: post,
-  });
-
-  console.log(res);
-};
 </script>
 
 <template>
@@ -31,7 +24,7 @@ const storePost = async () => {
           <textarea v-model="post.body" type="text" placeholder="Ваш текст" />
         </div>
         <div>
-          <a @click.prevent="storePost" href="#">Создать</a>
+          <a @click.prevent="storePost(post)" href="#">Создать</a>
         </div>
       </div>
     </div>

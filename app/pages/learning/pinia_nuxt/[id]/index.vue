@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { useHead, useRoute } from "nuxt/app";
-
 const route = useRoute();
 
-const { getPost } = usePost();
+const postStore = usePostStore();
 
-const post = await getPost();
-
-// Без хранилища:
-// const { data: postsData } = await useFetch<Post>(
-//   `http://localhost:3001/posts/${route.params.id}`
-// );
+await postStore.getPost(route);
 
 watchEffect(() => {
   const queryTitle = route.query.title as string | undefined;
@@ -25,12 +19,12 @@ watchEffect(() => {
 <template>
   <div>
     <h2 class="title">Практика UseFetch()</h2>
-    <NuxtLink :to="{ name: 'learning-useFetchPractic' }">Назад</NuxtLink>
+    <NuxtLink :to="{ name: 'learning-pinia_nuxt' }">Назад</NuxtLink>
     <div>
-      <div v-if="post">
-        <h3>{{ post.title }}</h3>
+      <div v-if="postStore.post">
+        <h3>{{ postStore.post.title }}</h3>
         <p>
-          {{ post.body }}
+          {{ postStore.post.body }}
         </p>
       </div>
       <div v-else>Загрузка...</div>

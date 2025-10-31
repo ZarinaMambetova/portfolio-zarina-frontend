@@ -6,6 +6,10 @@
 //   font-display: swap;
 // }
 
+$violet: #9e33dc;
+p:hover {
+color: $violet;
+}
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

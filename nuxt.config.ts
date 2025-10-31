@@ -4,12 +4,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.scss'],
-
-  /*
-  ** Headers of the page
-  */
+  
+  modules: ['@pinia/nuxt'],
 
   app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+
+      /*
+      ** Headers of the page
+      */
     head: {
       title: 'Portfolio. Mambetova Zarina',
       htmlAttrs: {

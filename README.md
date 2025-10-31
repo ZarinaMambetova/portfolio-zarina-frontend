@@ -1,4 +1,14 @@
-Nuxt 4, Typescript, vue 3.5, sass, json-server
+# Nuxt 4, Typescript, VUE.JS 3.5, PINIA, SASS, json-server.
+
+
+## Практика в разделе "learning" на Nuxt 4 c Typescript.
+Выполнен вывод, создание, редактирование, удаление постов разными способами с помощью:
+
+- useFetch, $fetch, useLazyFetch, refresh, execute, pending, status, key
+- Pinia with Option API
+- Pinia with Composition API
+
+
 
 # Nuxt Minimal Starter
 

@@ -1,19 +1,21 @@
 <script setup lang="ts">
+import type { Post } from "@/types/interfaces";
 definePageMeta({
   title: "Создание записи",
 });
 
-const { createPost } = usePost();
 const post = reactive({
   title: "",
   body: "",
 });
+const postCompositionStore = usePostCompositionStore();
+
 </script>
 
 <template>
   <div>
     <h2 class="title">Практика UseFetch()</h2>
-    <NuxtLink :to="{ name: 'learning-useFetchPractic' }">Назад</NuxtLink>
+    <NuxtLink :to="{ name: 'learning-pinia_composition' }">Назад</NuxtLink>
     <div>
       <h3>Создать запись</h3>
       <div>
@@ -24,7 +26,7 @@ const post = reactive({
           <textarea v-model="post.body" type="text" placeholder="Ваш текст" />
         </div>
         <div>
-          <a @click.prevent="createPost(post)" href="#">Создать</a>
+          <button @click.prevent="postCompositionStore.createPost(post)">Создать</button>
         </div>
       </div>
     </div>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { Post } from "@/types/interfaces";
-
 definePageMeta({
   title: "useFetch Practic",
 });
 
 const { getPosts, deletePost } = usePost();
+const postStore = usePostStore();
 
 const posts = await getPosts();
 

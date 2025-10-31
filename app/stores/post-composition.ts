@@ -1,30 +1,22 @@
 import type { Post } from "@/types/interfaces";
 import { useRoute } from "nuxt/app";
+import type { RouteLocationNormalizedLoadedGeneric } from "vue-router";
 
-export const usePost = () => {
+export const usePostCompositionStore = defineStore('postCompositionStore', () => {
+ const route = useRoute();
+
+  const posts = ref([] as Post[]);
+  const post = reactive({} as Post);
   
-  const route = useRoute();
-
-  const posts = useState<Post[]>('post', () => [])
-  const post = useState<Post>('post', () => {
-    return {
-      id: '',
-      title: '',
-      body: ''
-    }
-  })
   const getPosts = async () => {
     const res = await useFetch<Post[]>("http://localhost:3001/posts");
     posts.value = res.data.value ?? [];
-
-    return posts;
   }
 
-  const getPost = async () => {
+  const getPost = async (route: RouteLocationNormalizedLoadedGeneric) => {
     const res = await useFetch<Post>(`http://localhost:3001/posts/${route.params.id}`);
-    post.value = res.data.value ?? { id: '', title: '', body: '' };
-
-    return post;
+    
+    Object.assign(post, res.data.value);
 }
   const createPost = async (post: Post) => {
     const res = await $fetch("http://localhost:3001/posts", {
@@ -41,9 +33,9 @@ export const usePost = () => {
   };
 
   const updatePost = async () => {
-    const res = await $fetch(`http://localhost:3001/posts/${route.params.id}`, {
+    const res = await $fetch(`http://localhost:3001/posts/${post.id}`, {
       method: "PATCH",
-      body: post.value,
+      body: post,
     });
 
     console.log(res, "update");
@@ -66,6 +58,5 @@ export const usePost = () => {
   console.log(res, "DELETE");
 }
   
-  return { getPosts, getPost, createPost, updatePost, deletePost };
-
-}
+  return { posts, post, getPosts, getPost, createPost, updatePost, deletePost };
+})

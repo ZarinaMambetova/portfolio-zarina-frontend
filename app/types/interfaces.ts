@@ -3,3 +3,9 @@ export interface Post {
   title: string;
   body: string;
 }
+
+export interface NavItem {
+  path: string;
+  name: string;
+}
+

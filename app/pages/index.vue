@@ -1,6 +1,7 @@
 <template>
   <div>
-    Главная
+     <header-component/> 
+         Главная
     <NuxtLink to="/about">About</NuxtLink>
     <img
       src="~/assets/image/photo.jpg"

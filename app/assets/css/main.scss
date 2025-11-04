@@ -6,7 +6,7 @@
 //   font-display: swap;
 // }
 
-@import 'variables'; 
+@use 'variables' as v;
 
 html {
   font-family: 'Source Sans Pro',  'Segoe UI',
@@ -18,10 +18,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: $bg-color;
+  background-color: v.$bg-color;
+  color: v.$text-color;
 }
 
 
@@ -45,17 +47,91 @@ ul>li {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: $text-color;
+    color: v.$text-color;
 
     &:hover {
-      color: $main-green;
+      color: v.$main-green;
     }
 }
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 85px 0;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+  padding: 10px 35px;
+  line-height: 1.3rem;
+
+    &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: v.$bg-color;
+    z-index: -1;
+    transition: 0.5s;
+
+    }
+
+    &__blue {
+      color: v.$bg-color;
+      background-color: v.$main-green;
+      border: 1px solid v.$main-green;
+
+        &::before {
+        background: v.$bg-color;
+      }
+
+        &:hover {
+        color: v.$main-green;
+      }
+
+        &:hover::before {
+        width: 100%;
+      }
+    }
+
+    &__black {
+      color: v.$main-green;
+      background-color: v.$bg-color;
+      border: 1px solid v.$main-green;
+
+      &::before {
+        background: v.$main-green;
+      }
+
+        &:hover {
+        color: v.$bg-color;
+      }
+
+        &:hover::before {
+        width: 100%;
+      }
+    }
+
+      &:hover::before {
+    width: 100%;
+  }
+  }
 
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $text-color;
+  color: v.$text-color;
   height: 100%;
   width: 100%;
   position: relative;
@@ -65,11 +141,11 @@ a {
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
-  background-color: $gray;
+  background-color: v.$gray;
   border-radius: 3px;
 
   &-thumb {
-    background-color: $light-gray;
+    background-color: v.$light-gray;
     border-radius: 3px;
     &:hover {
       border: none;

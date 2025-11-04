@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <div>
+  <div id="about">
     Обо мне
     <NuxtLink to="/">Главная</NuxtLink>
   </div>

@@ -2,28 +2,29 @@
 import type { NavItem } from '~/types/interfaces';
 
 const headerLinks: NavItem[] = [{
-  path: '/',
+  path: 'home',
   name: 'Главная'
 },
 {
-  path: '/about',
+  path: 'about',
   name: 'Обо мне'
 },
 {
-  path: '/education',
-  name: 'Образование'
+  path: 'skills',
+  name: 'Мои навыки'
 },
 {
-  path: '/skills',
-  name: 'Навыки'
+  path: 'career',
+  name: 'Моя карьера'
+},
+
+{
+  path: 'projects',
+  name: 'Мои проекты'
 },
 {
-  path: '/learning',
-  name: 'Практика'
-},
-{
-  path: '/contact',
-  name: 'Контакты'
+  path: 'contact',
+  name: 'Мои контакты'
 },
 ]
 </script>
@@ -35,7 +36,7 @@ const headerLinks: NavItem[] = [{
       v-for="link, index in headerLinks" :key="index">
         <NuxtLink 
         class="navigation__link"
-          :to="link.path">{{link.name}}
+          :to="`#${link.path}`">{{link.name}}
         </NuxtLink>
 
       </li>
@@ -43,15 +44,15 @@ const headerLinks: NavItem[] = [{
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/css/variables';
-
 .navigation {
   &__list {
     display: flex;
+    
   }
 
   &__link {
-    padding: 0 15px;
+    padding: 0 1em;
+    font-weight: 500;
   }
 }
 </style>

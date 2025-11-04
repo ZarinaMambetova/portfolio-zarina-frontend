@@ -9,10 +9,10 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/css/variables';
+@use '@/assets/css/variables' as v;
 
 .header {
-  background-color: $bg-color;
+  background-color: v.$bg-color;
       position: fixed;
     top: 0;
     left: 0;
@@ -23,5 +23,7 @@
     align-items: center;
     z-index: 100;
     transition: .3s;
+    justify-content: flex-end;
+    height: 75px;
 }
 </style>

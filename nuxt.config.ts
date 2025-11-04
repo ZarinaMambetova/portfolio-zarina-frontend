@@ -7,6 +7,13 @@ export default defineNuxtConfig({
   
   modules: ['@pinia/nuxt'],
 
+  vite: {
+    plugins: [
+      // Вариант 1: Используя динамическое импортирование с вызовом
+      import('vite-svg-loader').then(m => m.default())
+    ]
+  },
+
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
 
@@ -31,4 +38,6 @@ export default defineNuxtConfig({
       ]
     }
   },
+
+
 })

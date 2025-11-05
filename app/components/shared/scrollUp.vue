@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import IconSvg from '/svg/arrow-up.svg'
+import IconSvg from '~/assets/icons/arrow-up.svg'
 
 const scrollY = ref(0);
 

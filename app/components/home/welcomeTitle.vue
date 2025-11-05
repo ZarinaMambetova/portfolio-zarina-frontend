@@ -1,5 +1,5 @@
 <script setup>
-import IconSvg from '/svg/download-pdf.svg'
+import IconSvg from '~/assets/icons/download-pdf.svg';
 </script>
 <template>
   <div class="welcome show-animate">

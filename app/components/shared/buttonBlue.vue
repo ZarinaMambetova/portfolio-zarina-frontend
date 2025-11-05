@@ -1,7 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  title: "Обо мне",
-});
 </script>
 
 <template>

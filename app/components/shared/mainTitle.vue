@@ -16,7 +16,7 @@ defineProps({
 @use '@/assets/css/variables' as v;
 
 .main-title {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-size: 2.5rem;
   text-align: center;
   

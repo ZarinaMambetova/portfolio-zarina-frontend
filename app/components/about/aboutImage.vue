@@ -3,7 +3,7 @@
 
 <template>
 <div class="about__image">
-  <img  class="about__pic" src="/image/about.png" alt="иконка раздела обо мне">
+  <img  class="about__pic" src="/image/photo.jpeg" alt="иконка раздела обо мне">
     <span class="about__circle"></span>
   </div>
 

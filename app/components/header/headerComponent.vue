@@ -12,8 +12,9 @@
 @use '@/assets/css/variables' as v;
 
 .header {
-  background-color: v.$bg-color;
-      position: fixed;
+    background-color: rgba(v.$bg-color, .8);
+    backdrop-filter: blur(4px);
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

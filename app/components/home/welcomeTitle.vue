@@ -62,7 +62,7 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
     /* Анимация для текста при наличии класса show-animate */
     .show-animate & {
-      animation: homeBgText 6s linear infinite 2s;
+      animation: homeBgText 6s linear infinite 1s;
     }
 
     &::before {
@@ -77,7 +77,7 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
         /* Анимация для ::before эффектов */
       .show-animate & {
-        animation: homeCursorText 6s linear infinite 2s;
+        animation: homeCursorText 6s linear infinite 1s;
       }
     }
     

@@ -17,7 +17,7 @@ watchEffect(() => {
 });
 </script>
 <template>
-  <div>
+  <div  ref="teleports">
     <NuxtLoadingIndicator />
 
     <NuxtLayout>

@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, watch, ref } from 'vue';
+import { watch, ref } from 'vue';
 
 const props = defineProps({
   isShowAnimate: Boolean,
@@ -148,7 +148,6 @@ watch(
 <template>
   
 <template>
-  <div>
     <transition-group 
       name="slide" 
       tag="ul" 
@@ -164,7 +163,7 @@ watch(
         <div class="skills__label">{{ skill.name }}</div>
       </li>
     </transition-group>
-  </div>
+
 </template>
 
   

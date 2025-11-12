@@ -2,43 +2,58 @@
 import WelcomeTitle from '~/components/home/welcomeTitle.vue';
 import MainTitle from '~/components/shared/mainTitle.vue';
 import ScrollUp from '~/components/shared/scrollUp.vue';
+import ScrollDown from '~/components/shared/scrollDown.vue';
+import ModalWindow from '~/components/shared/ModalWindow.vue';
 
 import { onMounted, ref } from 'vue';
 import WayList from '~/components/career/wayList.vue';
 
-const isShowAnimate = ref(false);
+// Конфигурация анимаций
+const animationConfig = {
+  skills: {
+    threshold: 0.2,
+    rootMargin: '-25% 0px -25% 0px'
+  },
+  career: {
+    threshold: 0.2,
+    rootMargin: '-25% 0px -25% 0px'
+  }
+}
 
-onMounted(() => {
-    const targetSection = document.querySelector('#skills');
+const isShowAnimate = ref(false)
+const isShowCareer = ref(false)
 
-    if (!targetSection) return; // Если секция не найдена, ничего не делаем
+const { targetRef: skillsRef, isIntersecting: skillsIntersecting } = 
+  useIntersectionObserver(animationConfig.skills)
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.7 // или другой порог, который тебе нужен
-    };
+const { targetRef: careerRef, isIntersecting: careerIntersecting } = 
+  useIntersectionObserver(animationConfig.career)
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.target.id === 'skills') {
-                if (entry.isIntersecting) {
-                    isShowAnimate.value = true;
-                }
-                // Не обязательно: убрать класс при исчезновении
-                /*
-                else {
+// Запускаем анимацию только один раз
+watch(skillsIntersecting, (newVal) => {
+  if (newVal && !isShowAnimate.value) {
+    isShowAnimate.value = true
+  }
+})
 
-                }
-                */
-            }
-        });
-    }, observerOptions);
+watch(careerIntersecting, (newVal) => {
+  if (newVal && !isShowCareer.value) {
+    isShowCareer.value = true
+  }
+})
 
-    if (targetSection) {
-        observer.observe(targetSection);
-    }
-});
+const isModalOpen = ref(false)
+const selectedItem = ref(null)
+
+function showModal(item) {
+    selectedItem.value = item
+    isModalOpen.value = true
+}
+
+const parseLinks = (text) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
+}
 </script>
 
 <template>
@@ -51,6 +66,7 @@ onMounted(() => {
             <section class="section home show-animate" id="home">
                 <div class="container">
                     <WelcomeTitle></WelcomeTitle>
+                    <ScrollDown />
                 </div>
             </section>
     
@@ -66,7 +82,7 @@ onMounted(() => {
                 </div>
             </section>
     
-            <section class="section skills" id="skills">
+            <section class="section skills" id="skills" ref="skillsRef">
                 <div class="container">
                     <MainTitle firstWord="Навыки" secondWord=" и инструменты" />
     
@@ -74,10 +90,10 @@ onMounted(() => {
                 </div>
             </section>
     
-            <section class="section career" id="career">
+            <section class="section career" id="career" ref="careerRef">
                 <div class="container">
                     <MainTitle firstWord="Моя" secondWord="карьера" />
-                    <WayList/>
+                    <WayList @select="showModal" :isShowCareer="isShowCareer"/>
                 </div>
             </section>
     
@@ -97,6 +113,28 @@ onMounted(() => {
         </div>
     
         <scroll-up/>
+    
+        <ModalWindow v-model="isModalOpen">
+            <template v-if="selectedItem">
+                <div v-if="selectedItem.type === 'work'">
+                <h2 class="modal__name">{{ selectedItem.name }}</h2>
+                <div class="modal__post">{{ selectedItem.post }}</div>
+                <div class="modal__dates">{{ selectedItem.dates }}</div>
+                <ul class="modal__progress">
+                    <li class="modal__progress_item"
+                        v-for="progress, index in selectedItem.progresses" 
+                        :key="index">
+                        <span class="modal__progress_dot"> • </span>
+                        <span v-html="parseLinks(progress)"></span>
+                    </li>
+                </ul>
+    
+                </div>
+                <div v-else-if="selectedItem.type === 'projects'">
+                
+                </div>
+</template>
+        </ModalWindow>
     
     </div>
 </template>
@@ -122,6 +160,7 @@ onMounted(() => {
 .home {
     align-items: center;
     min-height: 100vh;
+    position: relative;
 }
 
 .about {
@@ -137,6 +176,26 @@ onMounted(() => {
     }
     &__title {
         margin-bottom: 15px;
+    }
+}
+
+.modal {
+    &__name {
+        margin-bottom: 15px;
+        color: v.$main-green;
+    }
+    &__post {
+        margin-bottom: 10px;
+    }
+    &__dates {
+        color: v.$light-gray;
+        font-size: .875rem;
+        margin-bottom: 10px;
+    }
+    &__progress {
+        &_item {
+            margin-bottom: 10px;
+        }
     }
 }
 </style>

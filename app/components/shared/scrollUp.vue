@@ -32,6 +32,10 @@ const scrollUp = () => {
 @use '@/assets/css/variables' as v;
 
 .scroll {
+      &__icon-pic {
+      color: v.$text-color; /* чтобы наследовать цвет или задавать явно */
+
+    }
   &__button {
     display: inline-block;
     text-align: center;
@@ -47,10 +51,14 @@ const scrollUp = () => {
     border-radius: 50%;
 
     &:hover {
-      border: 2px solid v.$text-color;
+      border: 2px solid v.$main-green;
       background-color: transparent;
-      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    }
+      box-shadow: v.$bg-color 0px 0px 15px;
+
+      .scroll__icon-pic {
+        color: v.$main-green;
+      }
+    } 
   }
 
     &-pic {

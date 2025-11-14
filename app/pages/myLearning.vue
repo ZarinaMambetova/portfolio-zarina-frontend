@@ -4,7 +4,7 @@ const color = ref("red");
 <template>
   <div>
     Страница для использования фишек
-    <img src="/image/photo.jpg" alt="Discover Nuxt" />
+    <img src="/image/photo.jpeg" alt="Discover Nuxt" />
     <p :class="$style.red">This should be red</p>
     https://github.com/nuxt-modules/fontaine Когда стоит установить Nuxt
     Fontaine: Вы стремитесь к улучшению Core Web Vitals, особенно уменьшению

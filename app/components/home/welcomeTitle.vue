@@ -15,7 +15,7 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
     
         <div class="welcome__buttons">
             <NuxtLink to="#projects" class="welcome__button button__blue button">Проекты</NuxtLink>
-            <a href="/image/photo.jpg" download class="button welcome__button button__black">
+            <a href="/image/photo.jpeg" download class="button welcome__button button__black">
 
               <span>Резюме</span>
               <IconSvg  class="welcome__icon" />

@@ -18,9 +18,6 @@ jobs:
           node-version: '22.18.0'  
       - name: Install dependencies
         run: npm install
-        
-      - name: Install dependencies server
-        run: npm run json-server
 
       - name: Build project
         run: npm run build

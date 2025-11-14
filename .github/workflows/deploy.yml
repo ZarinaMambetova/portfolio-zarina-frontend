@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest  # Используй ubuntu вместо windows
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -15,15 +15,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'  
+          node-version: '20'  # Рекомендую 20 вместо 22
+          cache: 'npm'
+          
       - name: Install dependencies
-        run: npm install
-
+        run: npm ci  # Лучше использовать ci для продакшена
+        
       - name: Build project
         run: npm run build
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.portfoliotoken }}
-          publish_dir: ./dist
+        id: deployment
+        uses: actions/deploy-pages@v2

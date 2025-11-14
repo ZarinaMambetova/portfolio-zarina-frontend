@@ -54,7 +54,7 @@ function handleClick(item) {
 
 .item {
   
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   position: relative;
 
   .works & {
@@ -100,6 +100,8 @@ function handleClick(item) {
 
   &__label {
     font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 5px;
   }  
 
   &__row {

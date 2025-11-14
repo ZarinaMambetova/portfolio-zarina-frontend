@@ -1,3 +1,4 @@
+// composables/useIntersectionObserver.ts
 export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
   const isIntersecting = ref(false)
   const targetRef = ref<HTMLElement | null>(null)

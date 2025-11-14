@@ -4,8 +4,9 @@ import MainTitle from '~/components/shared/mainTitle.vue';
 import ScrollUp from '~/components/shared/scrollUp.vue';
 import ScrollDown from '~/components/shared/scrollDown.vue';
 import ModalWindow from '~/components/shared/ModalWindow.vue';
+import ProjectsAnimation from '~/components/projects/projectsAnimation.vue';
 
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import WayList from '~/components/career/wayList.vue';
 
 // Конфигурация анимаций
@@ -99,8 +100,9 @@ const parseLinks = (text) => {
     
             <section class="section contact" id="projects">
                 <div class="container">
-                    <MainTitle firstWord="Мои" secondWord="контакты" />
-                    <NuxtLink to="/">Главная</NuxtLink>
+                    <MainTitle firstWord="Мои" secondWord="проекты" />
+                    <ProjectsAnimation/>
+
                 </div>
             </section>
     
@@ -151,9 +153,11 @@ const parseLinks = (text) => {
 }
 
 .section {
+    min-height: 100vh;
     display: flex;
     &:nth-child(even) {
         background-color: v.$bg-color-light;
+        border-radius: 7rem 0;
     }
 }
 

@@ -94,7 +94,7 @@ function handleSelect(selectedItem) {
     <titleShared 
       title="Опыт работы" 
       class="career__title animated-element"
-      :style="{ 'animation-delay': '0.5s' }"
+      :style="{ 'animation-delay': '0.3s' }"
     />
 
     <!-- 2. Список работ -->
@@ -104,7 +104,7 @@ function handleSelect(selectedItem) {
         :item="work"
         :key="work.id" 
         class="career__item animated-element"
-        :style="{ 'animation-delay': (0.8 + index * 0.2) + 's' }"
+        :style="{ 'animation-delay': (0.5 + index * 0.2) + 's' }"
         @select="handleSelect" 
       />
     </ul>
@@ -113,7 +113,7 @@ function handleSelect(selectedItem) {
     <titleShared 
       title="Образование" 
       class="career__title animated-element"
-      :style="{ 'animation-delay': (0.8 + works.length * 0.2 + 0.2) + 's' }"
+      :style="{ 'animation-delay': (0.5 + works.length * 0.2 + 0.2) + 's' }"
     />
 
     <!-- 4. Список образования -->
@@ -123,7 +123,7 @@ function handleSelect(selectedItem) {
         :key="period.id" 
         :item="period"
         class="career__item education animated-element"
-        :style="{ 'animation-delay': (0.8 + works.length * 0.2 + 0.5 + index * 0.2) + 's' }"
+        :style="{ 'animation-delay': (0.5 + works.length * 0.2 + 0.5 + index * 0.2) + 's' }"
       />
     </ul>
   </div>
@@ -148,7 +148,7 @@ function handleSelect(selectedItem) {
   &__item {
   opacity: 0;
   transform: translateY(100px);
-  animation: slideIn 3s forwards;
+  animation: slideIn 2s forwards;
     
   }
 }

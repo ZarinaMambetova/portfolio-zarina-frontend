@@ -6,102 +6,102 @@ const props = defineProps({
 });
 const initialSkills = [{
   id: 1,
-  path: '/svg/vue.svg',
+  path: './svg/vue.svg',
   name: 'VUEJS'
 },
 {
   id: 2,
-  path: '/svg/nuxt.svg',
+  path: './svg/nuxt.svg',
   name: 'NuxtJS'
 },
 {
   id: 3,
-  path: '/svg/pinia.svg',
+  path: './svg/pinia.svg',
   name: 'Pinia'
 },
 {id: 4,
-  path: '/svg/vitejs.svg',
+  path: './svg/vitejs.svg',
   name: 'ViteJS'
 },
 {id: 5,
-  path: '/svg/js.svg',
+  path: './svg/js.svg',
   name: 'JS'
 },
 {id: 6,
-  path: '/svg/html5.svg',
+  path: './svg/html5.svg',
   name: 'HTML5'
 },
 
 {id: 7,
-  path: '/svg/css.svg',
+  path: './svg/css.svg',
   name: 'CSS3'
 },
 {id: 8,
-  path: '/svg/sass.svg',
+  path: './svg/sass.svg',
   name: 'SASS'
 },
 
 {id: 9,
-  path: '/svg/typescript.svg',
+  path: './svg/typescript.svg',
   name: 'Typescript'
 },
 
 {id: 10,
-  path: '/svg/storybook.svg',
+  path: './svg/storybook.svg',
   name: 'Storybook'
 },
 
 {id: 11,
-  path: '/svg/figma.svg',
+  path: './svg/figma.svg',
   name: 'Figma'
 },
 {id: 12,
-  path: '/svg/github.svg',
+  path: './svg/github.svg',
   name: 'Github'
 },
 
 {id: 13,
-  path: '/svg/gitlab.svg',
+  path: './svg/gitlab.svg',
   name: 'Gitlab'
 },
 {id: 14,
-  path: '/svg/jest.svg',
+  path: './svg/jest.svg',
   name: 'Jest'
 },
 {id: 15,
-  path: '/svg/npm.svg',
+  path: './svg/npm.svg',
   name: 'npm'
 },
 {id: 16,
-  path: '/svg/vscode.svg',
+  path: './svg/vscode.svg',
   name: 'VSCode'
 },
 {id: 17,
-  path: '/svg/jquery.svg',
+  path: './svg/jquery.svg',
   name: 'JQuery'
 },
 {id: 18,
-  path: '/svg/bem.svg',
+  path: './svg/bem.svg',
   name: 'BEMnaming'
 },
 {id: 19,
-  path: '/svg/json.svg',
+  path: './svg/json.svg',
   name: 'JSON'
 },
 {id: 20,
-  path: '/svg/postman.svg',
+  path: './svg/postman.svg',
   name: 'Postman'
 },
 {id: 21,
-  path: '/svg/gulp.svg',
+  path: './svg/gulp.svg',
   name: 'Gulp'
 },
 {id: 22,
-  path: '/svg/sonarqube.svg',
+  path: './svg/sonarqube.svg',
   name: 'Sonarqube'
 },
 {id: 23,
-  path: '/svg/swagger.svg',
+  path: './svg/swagger.svg',
   name: 'Swagger'
 },
 ]

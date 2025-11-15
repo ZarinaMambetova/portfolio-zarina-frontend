@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-        baseURL: '/portfolio-zarina-frontend/',
+    baseURL: '/portfolio-zarina-frontend/',
     buildAssetsDir: '/assets/',
     pageTransition: { name: 'page', mode: 'out-in' },
 
@@ -49,11 +49,9 @@ export default defineNuxtConfig({
     }
   },
 
-    runtimeConfig: {
+  runtimeConfig: {
     public: {
       baseURL: '/portfolio-zarina-frontend/'
     }
   }
-
-
 })

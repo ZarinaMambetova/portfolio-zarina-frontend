@@ -3,11 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  ssr: false, // Отключить SSR для GitHub Pages
   nitro: {
+    preset: 'static', // Статическая сборка
     output: {
-      publicDir: 'dist'
+      publicDir: 'dist' // Явно указываем выходную папку
     }
   },
+
 
   css: ['~/assets/css/main.scss'],
   
@@ -21,6 +24,8 @@ export default defineNuxtConfig({
   },
 
   app: {
+        baseURL: '/portfolio-zarina-frontend/',
+    buildAssetsDir: '/assets/',
     pageTransition: { name: 'page', mode: 'out-in' },
 
       /*

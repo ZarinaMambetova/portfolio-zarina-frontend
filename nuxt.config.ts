@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: 'github_pages', // Статическая сборка
+    preset: 'static', // Статическая сборка
     output: {
       publicDir: 'dist' // Явно указываем выходную папку
     }

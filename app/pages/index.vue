@@ -13,7 +13,7 @@ import WayList from '~/components/career/wayList.vue';
 const animationConfig = {
   skills: {
     threshold: 0.2,
-    rootMargin: '-25% 0px -25% 0px'
+    rootMargin: '-20% 0px -20% 0px'
   },
   career: {
     threshold: 0.2,

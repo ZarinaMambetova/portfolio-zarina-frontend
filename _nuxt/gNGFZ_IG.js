@@ -1,0 +1,1 @@
+import{_ as t}from"./DlAUqK2U.js";import{P as e,c as s,o as n,b as c}from"#entry";const r={},a={class:"empty-layout"};function p(_,m,d,f,i,l){const o=e("nuxt");return n(),s("div",a,[c(o)])}const $=t(r,[["render",p]]);export{$ as default};

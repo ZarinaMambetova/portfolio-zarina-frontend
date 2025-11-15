@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  nitro: {
+    output: {
+      publicDir: 'dist'
+    }
+  },
+
   css: ['~/assets/css/main.scss'],
   
   modules: ['@pinia/nuxt'],

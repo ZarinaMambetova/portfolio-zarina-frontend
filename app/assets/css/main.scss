@@ -60,6 +60,12 @@ a {
   padding: 85px 0;
 }
 
+.unactive {
+  opacity: .5;
+  pointer-events: none;
+  cursor: default;
+}
+
 .button {
   position: relative;
   display: inline-flex;

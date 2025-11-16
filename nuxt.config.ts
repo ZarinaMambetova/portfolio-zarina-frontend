@@ -4,9 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: 'static', // Статическая сборка
+    preset: 'static',
     output: {
-      publicDir: 'dist' // Явно указываем выходную папку
+      publicDir: 'dist' 
     }
   },
 
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      // Вариант 1: Используя динамическое импортирование с вызовом
+      // Вставка svg с возможностью менять состояние
       import('vite-svg-loader').then(m => m.default())
     ]
   },

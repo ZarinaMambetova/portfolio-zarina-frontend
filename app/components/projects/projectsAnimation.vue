@@ -30,19 +30,19 @@
 
 <script setup>
 const sections = [{
-        middleImage: 'https://64cdd8f0e1.clvaw-cdnwnd.com/6fa1885c544edfffd63aff1dd439e50b/system_preview_detail_200006782-4da5a4e8c5/fgdfgfg.jpg',
-        title: 'A glorious nature shot.',
-        site: 'https://class-cloud.ru/',
+        middleImage: './image/projects/class.jpeg',
+        title: 'Project management module (ctrl2go)',
+        site: '',
         github: '',
-        description: 'Wow. What a wonderful image. And look! there',
+        description: 'Разработала с нуля этот сайт платформы CLASS  на Vue.js, с адаптивной и кроссбраузерной версткой согласно figma-макетам, взаимодействием с сервером.',
         technologies: [
             'Vue.js', 'Vite', 'JavaScript', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'i18n', 'Figma',
         ]
     },
     {
-        middleImage: 'https://64cdd8f0e1.clvaw-cdnwnd.com/6fa1885c544edfffd63aff1dd439e50b/system_preview_detail_200006782-4da5a4e8c5/fgdfgfg.jpg',
-        title: 'Check out this guy.',
-        description: 'What an interesting looking person! I wonder',
+        middleImage: './image/projects/pmm.jpeg',
+        title: 'Class (ctrl2go) (закрытая система)',
+        description: 'Код на закрытом репозитории GitLab. Настроен вывод/редактирование/удаление данных из разных API (отправка HTTP-запросов к API через Axios), вывод графиков amcharts5, скачивание и загрузка данных из файлов',
         technologies: [
             'Vue.js', 'Pinia', 'Vite', 'JavaScript', 'Storybook', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'Swagger', 'SonarQube', 'i18n', 'Figma', 'AmChartsV4 '
         ]
@@ -52,7 +52,6 @@ const sections = [{
 const sectionRefs = ref([])
 const intersections = ref(sections.map(() => false))
 
-// Простой Intersection Observer
 const initObservers = () => {
     const options = {
         threshold: 0.3,

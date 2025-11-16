@@ -17,7 +17,7 @@ watch(() => props.isShowCareer, (newVal) => {
 
 const education = ref ([{
   id: 1,
-  logo: '/image/loftschool.png',
+  logo: './image/loftschool.png',
   name: 'Loftschool',
   post: 'Веб-разработчик',
   dates:'Сентябрь 2017 — Январь 2018',
@@ -26,7 +26,7 @@ const education = ref ([{
 ]},
 {
   id: 2,
-  logo: '/image/agu.png',
+  logo: './image/agu.png',
   name: 'Астраханский государственный университет',
   post: 'Факультет мировой экономики и управления',
   dates:'Март 2003 — Май 2007',
@@ -37,7 +37,7 @@ const education = ref ([{
 const works = ref ([{
   id: 1,
   type: 'work',
-  logo: '/svg/c2g.svg',
+  logo: './svg/c2g.svg',
   name: 'Ctrl2GO',
   post: 'Фронтенд разработчик (Middle)',
   dates:'Март 2022 — Апрель 2025 (3 года и 2 месяца)',
@@ -48,7 +48,7 @@ const works = ref ([{
 {
   id: 2,
   type: 'work',
-  logo: '/svg/tkb.svg',
+  logo: './svg/tkb.svg',
   name: 'Транскапиталбанк',
   post: 'Frontend/HTML-верстальщик (Junior), контент-менеджмент',
   dates:'Октябрь 2020 — Февраль 2022 (1 год и 5 месяцев)',
@@ -59,7 +59,7 @@ const works = ref ([{
 {
   id: 3,
   type: 'work',
-  logo: '/image/sliza.png',
+  logo: './image/sliza.png',
   name: 'Sliza',
   post: 'Junior frontend/HTML-верстальщик',
   dates:'Октябрь 2019 — Июнь 2020 (9 месяцев)',
@@ -70,7 +70,7 @@ const works = ref ([{
 {
   id: 4,
   type: 'work',
-  logo: '/image/loftschool.png',
+  logo: './image/loftschool.png',
   name: 'Loftschool',
   post: 'Куратор, верстка',
   dates:'Февраль 2018 — Сентябрь 2019 (1 год и 8 месяцев)',

@@ -49,6 +49,7 @@ const selectedItem = ref(null)
 function showModal(item) {
     selectedItem.value = item
     isModalOpen.value = true
+    console.log(selectedItem.value)
 }
 
 const parseLinks = (text) => {
@@ -101,7 +102,7 @@ const parseLinks = (text) => {
             <section class="section contact" id="projects">
                 <div class="container">
                     <MainTitle firstWord="Мои" secondWord="проекты" />
-                    <ProjectsAnimation/>
+                    <ProjectsAnimation @select="showModal" />
 
                 </div>
             </section>
@@ -133,7 +134,9 @@ const parseLinks = (text) => {
     
                 </div>
                 <div v-else-if="selectedItem.type === 'projects'">
-                
+                              <div class="project__content">
+                <img  class="project__image" :src="selectedItem.middleImage" alt="" />
+            </div>
                 </div>
 </template>
         </ModalWindow>

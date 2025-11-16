@@ -1,24 +1,24 @@
 <template>
-    <div class="sections-container">
-        <div v-for="(section, index) in sections" :key="index" :class="['section', { 'animate': intersections[index] }]" :ref="el => sectionRefs[index] = el">
-            <div class="middle">
-                <img :src="section.middleImage" alt="" />
+    <div class="projects">
+        <div v-for="(project, index) in projects" :key="index" :class="['project', { 'animate': interprojects[index] }]" :ref="el => projectRefs[index] = el" >
+            <div class="project__middle"  @click="handleSelect(project)">
+                <img :src="project.middleImage" alt="" />
             </div>
-            <div class="left title">
-                <div class="content">
-                    <h2>{{ section.title }}</h2>
-                    <p>{{ section.description }}</p>
-                    <ul class="item-charge">
+            <div class="project__left">
+                <div class="project__content">
+                    <h2 class="project__title">{{ project.title }}</h2>
+                    <p class="project__description">{{ project.description }}</p>
+                    <ul class="project__charge">
     
-                        <li class="item-charge__item" v-for="(technology, index) in section.technologies" :key="index">
-                            <span class="item-charge__dot"> • </span> {{ technology }}
+                        <li class="project__charge_item" v-for="(technology, index) in project.technologies" :key="index">
+                             {{ technology }}
                         </li>
                     </ul>
-                    <div class="welcome__buttons">
-                        <NuxtLink :to="section.site" class="button welcome__button button__black" target="_blank" :class="{ 'unactive': !section.site }" :disabled="!section.site">
+                    <div class="project__buttons">
+                        <NuxtLink :to="project.site" class="button project__button button__blue" target="_blank" :class="{ 'unactive': !project.site }" :disabled="!project.site">
                             Посмотреть
                         </NuxtLink>
-                        <NuxtLink :to="section.github" class="button welcome__button button__black" :class="{ 'unactive': !section.github }" :disabled="!section.github">
+                        <NuxtLink :to="project.github" class="button project__button button__black" :class="{ 'unactive': !project.github }" :disabled="!project.github">
                             GitHub
                         </NuxtLink>
                     </div>
@@ -29,10 +29,11 @@
 </template>
 
 <script setup>
-const sections = [{
+const projects = [{
+        type: 'projects',
         middleImage: './image/projects/class.jpeg',
-        title: 'Project management module (ctrl2go)',
-        site: '',
+        title: 'Class-cloud (ctrl2go)',
+        site: 'https://class-cloud.ru/',
         github: '',
         description: 'Разработала с нуля этот сайт платформы CLASS  на Vue.js, с адаптивной и кроссбраузерной версткой согласно figma-макетам, взаимодействием с сервером.',
         technologies: [
@@ -40,17 +41,20 @@ const sections = [{
         ]
     },
     {
-        middleImage: './image/projects/pmm.jpeg',
-        title: 'Class (ctrl2go) (закрытая система)',
+        
+      type: 'projects',
+      middleImage: './image/projects/pmm.jpeg',
+        title: 'Project management module (ctrl2go)',
         description: 'Код на закрытом репозитории GitLab. Настроен вывод/редактирование/удаление данных из разных API (отправка HTTP-запросов к API через Axios), вывод графиков amcharts5, скачивание и загрузка данных из файлов',
         technologies: [
             'Vue.js', 'Pinia', 'Vite', 'JavaScript', 'Storybook', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'Swagger', 'SonarQube', 'i18n', 'Figma', 'AmChartsV4 '
         ]
-    }
+    },
+    
 ]
 
-const sectionRefs = ref([])
-const intersections = ref(sections.map(() => false))
+const projectRefs = ref([])
+const interprojects = ref(projects.map(() => false))
 
 const initObservers = () => {
     const options = {
@@ -60,21 +64,29 @@ const initObservers = () => {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            const index = sectionRefs.value.findIndex(ref => ref === entry.target)
+            const index = projectRefs.value.findIndex(ref => ref === entry.target)
             if (index !== -1) {
-                intersections.value[index] = entry.isIntersecting
+                interprojects.value[index] = entry.isIntersecting
             }
         })
     }, options)
 
     // Наблюдаем за всеми секциями
-    sectionRefs.value.forEach((section, index) => {
-        if (section) {
-            observer.observe(section)
+    projectRefs.value.forEach((project, index) => {
+        if (project) {
+            observer.observe(project)
         }
     })
 
     return observer
+};
+
+const emit = defineEmits(['select'])
+// Метод для обработки клика
+function handleSelect(selectedItem) {
+  // Вызвать событие 'select' и передать объект item
+  emit('select', selectedItem)
+  console.log('select', selectedItem)
 }
 
 onMounted(() => {
@@ -87,38 +99,41 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.sections-container {
+@use '@/assets/css/variables' as v;
+
+.projects {
     width: 100%;
 }
 
-.section {
+.project {
     width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
     min-height: 300px;
-    @media (min-width: 768px) {
+
         height: 500px;
         margin-bottom: 4rem;
-    }
-    .left,
-    .middle {
-        padding: 30px;
+
+    &__left,
+    &__middle {
+
         color: #fff;
         box-sizing: border-box;
-        @media (min-width: 768px) {
+
             position: absolute;
-            width: 33.333%;
-            height: 100%;
+            width: 50%;
+            height: 365px;
             transition: all 0.6s ease-in-out;
-        }
+
     }
-    .middle {
+    &__middle {
         background: #2c3e50;
-        @media (min-width: 768px) {
-            left: 33.33%;
-        }
+        right: 0;
+        z-index: 2;
+                padding: 3px;
+
         img {
             width: 100%;
             height: 200px;
@@ -128,65 +143,68 @@ onMounted(() => {
             }
         }
     }
-    .left {
+    &__left {
         background: rgba(44, 62, 80, 0.9);
-        @media (min-width: 768px) {
-            left: 50%;
-        }
-        .content {
-            @media (min-width: 768px) {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: calc(100% - 60px);
-            }
-        }
-    } // Анимация при появлении в viewport
-    &.animate {
-        .left {
-            @media (min-width: 768px) {
+        left: 50%;
+        z-index: 1;
+        padding: 10px 14px;
+.animate 
+        & {
                 left: 0;
-            }
         }
+
+    } 
+    &__content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% - 60px);
+
+
     }
-    .content {
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        &__title,
+        &__description,
+        &__charge {
+            margin-bottom: 1.3rem;
         }
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
+&__title {
+color: #00dc82;
+}
+        
+
+
+    &__charge {
+      display: flex;
+      flex-wrap: wrap;
+
+      &_item {
+border-radius: 8px;
+    padding: 3px 7px;
+
+    background-color: v.$light-gray;
+    margin: 0 10px 10px 0;
+      }
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 12px 24px;
-        background: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        &:hover {
-            background: #0056b3;
-        }
+
+    &__buttons {display: flex;
     }
+
+    &__button {}
 }
 
 // Мобильная версия
 @media (max-width: 767px) {
-    .section {
-        .middle,
-        .left {
+    .project {
+        &__middle,
+        &__left {
             position: relative;
             width: 100%;
             left: 0;
         }
-        .left {
+        &__left {
             order: 2;
         }
-        .middle {
+        &__middle {
             order: 1;
         }
     }

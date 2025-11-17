@@ -3,7 +3,7 @@ import WelcomeTitle from '~/components/home/welcomeTitle.vue';
 import MainTitle from '~/components/shared/mainTitle.vue';
 import ScrollUp from '~/components/shared/scrollUp.vue';
 import ScrollDown from '~/components/shared/scrollDown.vue';
-import ModalWindow from '~/components/shared/ModalWindow.vue';
+import ModalWindow from '~/components/shared/modalWindow.vue';
 import ProjectsAnimation from '~/components/projects/projectsAnimation.vue';
 
 import { ref } from 'vue';
@@ -123,20 +123,18 @@ const parseLinks = (text) => {
                 <h2 class="modal__name">{{ selectedItem.name }}</h2>
                 <div class="modal__post">{{ selectedItem.post }}</div>
                 <div class="modal__dates">{{ selectedItem.dates }}</div>
-                <ul class="modal__progress">
-                    <li class="modal__progress_item"
-                        v-for="progress, index in selectedItem.progresses" 
-                        :key="index">
-                        <span class="modal__progress_dot"> • </span>
-                        <span v-html="parseLinks(progress)"></span>
-                    </li>
-                </ul>
-    
+                    <ul class="modal__progress">
+                        <li class="modal__progress_item"
+                            v-for="progress, index in selectedItem.progresses" 
+                            :key="index">
+                            <span class="modal__progress_dot"> • </span>
+                            <span v-html="parseLinks(progress)"></span>
+                        </li>
+                    </ul>
                 </div>
-                <div v-else-if="selectedItem.type === 'projects'">
-                              <div class="project__content">
-                <img  class="project__image" :src="selectedItem.middleImage" alt="" />
-            </div>
+
+                <div v-else-if="selectedItem.type === 'projects'" class="modal-project__content">
+                <img  class="modal-project__image" :src="selectedItem.middleImage" alt="" />
                 </div>
 </template>
         </ModalWindow>
@@ -203,6 +201,10 @@ const parseLinks = (text) => {
         &_item {
             margin-bottom: 10px;
         }
+    }
+
+    &-project__image {
+    width: 100%;
     }
 }
 </style>

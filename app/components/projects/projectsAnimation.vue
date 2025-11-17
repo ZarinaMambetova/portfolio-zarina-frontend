@@ -31,6 +31,17 @@
 <script setup>
 const projects = [{
         type: 'projects',
+        middleImage: './image/projects/my-portfolio.jpeg',
+        title: 'Этот самый сайт-портфолио (В процессе)',
+        site: 'https://zarinamambetova.github.io/portfolio-zarina-frontend/',
+        github: 'https://github.com/ZarinaMambetova/portfolio-zarina-frontend',
+        description: 'Разрабатываю  этот сайт с адаптивной, кроссбраузерной версткой и анимацией для себя, чтобы попрактиковаться в Nuxt 4, TS и тестировании. Настроила CI/CD.  Вдохновлен примерами портфолио в открытом доступе.',
+        technologies: [
+            'Nuxt 4', 'Vue.js', 'JavaScript', 'CI/CD', 'Typescript', 'Pinia', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitHub',
+        ]
+    },
+    {
+        type: 'projects',
         middleImage: './image/projects/class.jpeg',
         title: 'Class-cloud (ctrl2go)',
         site: 'https://class-cloud.ru/',
@@ -45,12 +56,25 @@ const projects = [{
       type: 'projects',
       middleImage: './image/projects/pmm.jpeg',
         title: 'Project management module (ctrl2go)',
+                site: '',
+        github: '',
         description: 'Код на закрытом репозитории GitLab. Настроен вывод/редактирование/удаление данных из разных API (отправка HTTP-запросов к API через Axios), вывод графиков amcharts5, скачивание и загрузка данных из файлов',
         technologies: [
             'Vue.js', 'Pinia', 'Vite', 'JavaScript', 'Storybook', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'Swagger', 'SonarQube', 'i18n', 'Figma', 'AmChartsV4 '
         ]
     },
-    
+        {
+        
+      type: 'projects',
+      middleImage: './image/projects/interviews.jpeg',
+        title: 'Список собеседований',
+        site: 'https://zarinamambetova.github.io/interviews-project/',
+        github: 'https://github.com/ZarinaMambetova/interviews-project',
+        description: 'Сайт со списком собеседований с авторизацией и  возможностью фильтровать, добавлять, редактировать и удалять данные о собеседовании. Отдельно настроена статистика по данным. Данные для авторизации читайте в Readme',
+        technologies: [
+            'Vue.js 3', 'Pinia', 'Vite', 'Typescript', 'SCSS', 'БЭМ', 'Git', 'GitLab', 'chart.js', 'firebase', 'primevue', 'primeicons',
+        ]
+    },
 ]
 
 const projectRefs = ref([])
@@ -111,9 +135,8 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    min-height: 300px;
+    min-height: 365px;
 
-        height: 500px;
         margin-bottom: 4rem;
 
     &__left,
@@ -138,6 +161,7 @@ onMounted(() => {
             width: 100%;
             height: 200px;
             object-fit: cover;
+            cursor: pointer;
             @media (min-width: 768px) {
                 height: 100%;
             }
@@ -180,6 +204,8 @@ color: #00dc82;
       &_item {
 border-radius: 8px;
     padding: 3px 7px;
+    cursor: default;
+
 
     background-color: v.$light-gray;
     margin: 0 10px 10px 0;

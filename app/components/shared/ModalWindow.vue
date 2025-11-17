@@ -47,19 +47,23 @@ defineEmits(['update:modelValue'])
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 65%;
+    max-width: 75%;
     border: .1rem solid v.$bg-color-light;
     background-color: v.$bg-color;
     padding: 2rem;
     border-radius: .6rem;
-    margin: 1rem 0 ;
+    margin: 1rem 0;
     
-    max-height: 90%;
+    max-height: 90vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   &__text {
-  overflow: auto;
+    overflow: auto;
+    flex: 1;
+    max-height: 100%;
   }
 
   &__close {
@@ -81,8 +85,23 @@ defineEmits(['update:modelValue'])
     line-height: 1.3rem;
     cursor: pointer;
     font-size: 23px;
+  }
+}
 
-
+.modal {
+  &-project {
+    &__content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    &__image {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+    }
   }
 }
 </style>

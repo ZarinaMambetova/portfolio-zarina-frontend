@@ -1,6 +1,12 @@
 <template>
     <div class="projects">
-        <div v-for="(project, index) in projects" :key="index" :class="['project', { 'animate': interprojects[index] }]" :ref="el => projectRefs[index] = el" >
+            <ul class="projects__list">
+         <li 
+        v-for="(project, index) in visibleProjects" 
+        :key="index" 
+        :class="['project', { 'animate': interprojects[index] }]" 
+        :ref="el => projectRefs[index] = el"
+      >
             <div class="project__middle"  @click="handleSelect(project)">
                 <img :src="project.middleImage" alt="" />
             </div>
@@ -24,11 +30,22 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </li>
+    </ul>
+        <button 
+      v-if="showLoadMore" 
+      @click="loadMore" 
+      class="button project__button button__black"
+    >
+      Еще
+    </button>
     </div>
+
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 const projects = [{
         type: 'projects',
         middleImage: './image/projects/my-portfolio.jpeg',
@@ -48,7 +65,7 @@ const projects = [{
         github: '',
         description: 'Разработала с нуля этот сайт платформы CLASS  на Vue.js, с адаптивной и кроссбраузерной версткой согласно figma-макетам, взаимодействием с сервером.',
         technologies: [
-            'Vue.js', 'Vite', 'JavaScript', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'i18n', 'Figma',
+            'Vue.js', 'Vite', 'JavaScript', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'Flexbox', 'GridCss', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'i18n', 'Figma',
         ]
     },
     {
@@ -60,7 +77,7 @@ const projects = [{
         github: '',
         description: 'Код на закрытом репозитории GitLab. Настроен вывод/редактирование/удаление данных из разных API (отправка HTTP-запросов к API через Axios), вывод графиков amcharts5, скачивание и загрузка данных из файлов',
         technologies: [
-            'Vue.js', 'Pinia', 'Vite', 'JavaScript', 'Storybook', 'SCSS', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'Swagger', 'SonarQube', 'i18n', 'Figma', 'AmChartsV4 '
+            'Vue.js', 'Pinia', 'Vite', 'JavaScript', 'Storybook', 'SCSS', 'Flexbox', 'GridCss', 'БЭМ', 'Vue router', 'Git', 'GitLab', 'Axios', 'RESTful API', 'API Яндекс.Карты', 'Swagger', 'SonarQube', 'i18n', 'Figma', 'Pixel Perfect', 'AmChartsV4'
         ]
     },
         {
@@ -70,63 +87,296 @@ const projects = [{
         title: 'Список собеседований',
         site: 'https://zarinamambetova.github.io/interviews-project/',
         github: 'https://github.com/ZarinaMambetova/interviews-project',
-        description: 'Сайт со списком собеседований с авторизацией и  возможностью фильтровать, добавлять, редактировать и удалять данные о собеседовании. Отдельно настроена статистика по данным. Данные для авторизации читайте в Readme',
+        description: 'Список собеседований с авторизацией и  возможностью фильтровать, добавлять, редактировать и удалять данные о собеседовании. Отдельно настроена статистика по данным.',
         technologies: [
-            'Vue.js 3', 'Pinia', 'Vite', 'Typescript', 'SCSS', 'БЭМ', 'Git', 'GitLab', 'chart.js', 'firebase', 'primevue', 'primeicons',
+            'Vue.js 3', 'Pinia', 'Vite', 'Typescript', 'CI/CD', 'SCSS', 'Flexbox', 'БЭМ', 'Git', 'GitLab', 'chart.js', 'firebase', 'primevue', 'primeicons',
+        ]
+    },
+            {
+        
+      type: 'projects',
+      middleImage: './image/projects/remember.jpeg',
+        title: 'Игра Remember',
+        site: 'https://zarinamambetova.github.io/game_on_vue.js-remember/',
+        github: 'https://github.com/ZarinaMambetova/game_on_vue.js-remember',
+        description: 'Многоуровлевая игра для тренировки памяти. ',
+        technologies: ['Vue cli', 'git'
+        ]
+    },
+    {
+      type: 'projects',
+      middleImage: './image/projects/tkb-promo.jpeg',
+        title: 'ТКБ. Бонусы для своих.',
+        site: 'https://www.tkbbank.ru/business/promo/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'bitrix24', 'svg', 'Pixel Perfect', 'BEM', 'parallax', 'git', 'figma'
+        ]
+    },
+        {
+      type: 'projects',
+      middleImage: './image/projects/tkb-schet.jpeg',
+        title: 'ТКБ. Счет для бизнеса бесплатно',
+        site: 'https://www.tkbbank.ru/landing/rko5/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'bitrix24', 'svg', 'Pixel Perfect', 'BEM', 'git', 'figma'
+        ]
+    },
+            {
+      type: 'projects',
+      middleImage: './image/projects/tkb-controlled.jpeg',
+        title: 'ТКБ. Управляемый',
+        site: 'https://zarinamambetova.github.io/tkb_controlled/dist/',
+        github: 'https://github.com/ZarinaMambetova/tkb_controlled',
+        description: 'Один из лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка.',
+        technologies: ['Gulp', 'html', 'css', 'JavaScript', 'Flexbox', 'svg', 'BEM', 'git'
+        ]
+    },
+                {
+      type: 'projects',
+      middleImage: './image/projects/tkb-business.jpeg',
+        title: 'ТКБ. 1С:Бизнес',
+        site: 'https://www.tkbbank.ru/business/promo/1cstart/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'Pixel Perfect', 'bitrix24', 'svg', 'BEM', 'git', 'figma'
+        ]
+    },
+                    {
+      type: 'projects',
+      middleImage: './image/projects/tkb-1c.jpeg',
+        title: 'ТКБ. 1С:Кредит',
+        site: 'https://www.tkbbank.ru/business/promo/1ccredit/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'Pixel Perfect', 'bitrix24', 'svg', 'BEM', 'git', 'figma'
+        ]
+    },
+                        {
+      type: 'projects',
+      middleImage: './image/projects/tkb-kassa.jpeg',
+        title: 'ТКБ. 1С:Касса',
+        site: 'https://www.tkbbank.ru/business/promo/1ckassa/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'Pixel Perfect', 'bitrix24', 'svg', 'BEM', 'git', 'figma'
+        ]
+    },
+     {
+      type: 'projects',
+      middleImage: './image/projects/tkb-vacancy.jpeg',
+        title: 'ТКБ. Карьера - шаблон для вакансии',
+        site: 'https://www.tkbbank.ru/bank/job1/vacancy/sample-vacancy/',
+        github: '',
+        description: 'Одна из страниц для сайта ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'Pixel Perfect', 'bitrix24', 'svg', 'BEM', 'git', 'figma'
+        ]
+    },
+                            {
+      type: 'projects',
+      middleImage: './image/projects/tkb-lizing.jpeg',
+        title: 'Лизинговые закупки (все страницы сайта)',
+        site: 'http://lizzak.ru/',
+        github: '',
+        description: 'Один из рекламных лендингов для ТКБ Банка. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории банка.',
+        technologies: ['html', 'css', 'jquery ui', 'Flexbox', 'Pixel Perfect', 'bitrix24', 'svg', 'BEM', 'git', 'figma'
+        ]
+    },
+        {
+        type: 'projects',
+        middleImage: './image/projects/class-pro.jpeg',
+        title: 'Class-cloud (ctrl2go)',
+        site: 'https://class-cloud.ru/class.pro',
+        github: '',
+        description: 'Промо-визитка сайта class-cloud. Адаптивная и кроссбраузерная верстка согласно figma-макету. Код на закрытом репозитории',
+        technologies: [
+            'Vue.js', 'Vite', 'JavaScript', 'SCSS', 'БЭМ', 'Git', 'Flexbox', 'GitLab', 'Figma',
+        ]
+    },
+         {
+      type: 'projects',
+      middleImage: './image/projects/burger.jpeg',
+        title: 'Мистер Бургер',
+        site: 'https://zarinamambetova.github.io/landing-burgers/',
+        github: '',
+        description: 'Лендинг с адаптивной и кроссбраузерной версткой согласно  макету в Photoshop.',
+        technologies: ['html', 'scss', 'JavaScript', 'jquery', 'php', 'Flexbox', 'Pixel Perfect', 'svg', 'One Page Scroll', 'AJAX', 'git'
+        ]
+    },
+             {
+      type: 'projects',
+      middleImage: './image/projects/lost-shirt.jpeg',
+        title: 'Интернет-магазин "Lost-shirt"',
+        site: 'https://zarinamambetova.github.io/lost-shirt/',
+        github: 'https://github.com/ZarinaMambetova/lost-shirt',
+        description: 'Лендинг с адаптивной и кроссбраузерной версткой согласно  макету в Photoshop.',
+        technologies: ['html', 'scss', 'JavaScript', 'Flexbox', 'Pixel Perfect', 'svg', 'git'
+        ]
+    },
+
+         {
+      type: 'projects',
+      middleImage: './image/projects/todo.jpeg',
+        title: 'Список задач на vue.js',
+        site: 'https://zarinamambetova.github.io/vue.js-todo_list/',
+        github: 'https://github.com/ZarinaMambetova/vue.js-todo_list',
+        description: 'Список задач с возможностью добавить, удалить, отметить выполненной задачу.',
+        technologies: [ 'html', 'css', 'Vue.js', 'BEM', 'git', 'prepros'
+        ]
+    },
+             {
+      type: 'projects',
+      middleImage: './image/projects/astahov.jpeg',
+        title: 'Сайт-визитка',
+        site: 'https://zarinamambetova.github.io/mambetova-vue-project/',
+        github: 'https://github.com/ZarinaMambetova/mambetova-vue-project',
+        description: 'Лендинг с адаптивной и кроссбраузерной версткой согласно  макету в Photoshop.',
+        technologies: ['Vue.js 3', 'pug', 'pcss', 'JavaScript', 'BEM', 'Webpack', 'git', 'Pixel Perfect', 'figma', 'Flexbox', 'GridCss'
+        ]
+    },
+
+                        {
+      type: 'projects',
+      middleImage: './image/projects/hyunday.jpeg',
+        title: 'Hyundai Azera',
+        site: 'https://zarinamambetova.github.io/24TTL_Hyunday/dist/index.html',
+        github: 'https://github.com/ZarinaMambetova/24TTL_Hyunday',
+        description: 'Верстка согласно figma-макету с вставкой видео и css-аниммцией.',
+        technologies: ['Gulp', 'html', 'scss', 'JavaScript', 'Flexbox', 'SVG', 'JQuery', 'git'
+        ]
+    },
+                            {
+      type: 'projects',
+      middleImage: './image/projects/grid.jpeg',
+        title: 'Практика Grid Css',
+        site: 'https://zarinamambetova.github.io/grid-practice/',
+        github: 'https://github.com/ZarinaMambetova/grid-practice',
+        description: 'Страница создана для большей практики c Grid. Адаптивная верстка.',
+        technologies: ['html', 'scss', 'grid css', 'flexbox', 'svg', 'git'
+        ]
+    },
+     {
+      type: 'projects',
+      middleImage: './image/projects/ccr.jpeg',
+        title: 'Ccs-проект',
+        site: 'https://zarinamambetova.github.io/ccs-project/dist/',
+        github: 'https://github.com/ZarinaMambetova/ccs-project',
+        description: 'Страница создана для большей практики c Grid. Адаптивная верстка.',
+        technologies: ['html', 'scss', 'grid css', 'flexbox', 'svg', 'git'
+        ]
+    },
+     {
+      type: 'projects',
+      middleImage: './image/projects/mpn.jpeg',
+        title: 'MPN_Headliner',
+        site: 'https://zarinamambetova.github.io/MPN_Headliner/dist/',
+        github: 'https://github.com/ZarinaMambetova/MPN_Headliner',
+        description: 'Верстка согласно figma-макету с css-аниммцией.',
+        technologies: ['html', 'scss', 'grid css', 'flexbox', 'svg', 'git'
+        ]
+    },
+         {
+      type: 'projects',
+      middleImage: './image/projects/old-portfolio.jpeg',
+        title: 'Учебный сайт-портфолио',
+        site: 'https://zarinamambetova.github.io/MySitePortfolio/build/',
+        github: 'https://github.com/ZarinaMambetova/MySitePortfolio',
+        description: 'Сайт, созданный вов ремя обучения на курсе по vue.js',
+        technologies: ['Vue.js 3', 'pug', 'pcss', 'JavaScript', 'BEM', 'Webpack', 'git', 'Pixel Perfect', 'figma', 'Flexbox', 'GridCss'
         ]
     },
 ]
 
+// Реактивные переменные
+const visibleCount = ref(4)
+const projectsPerLoad = 4
 const projectRefs = ref([])
-const interprojects = ref(projects.map(() => false))
+const interprojects = ref([])
+let observer = null
 
+// Вычисляемое свойство для видимых проектов
+const visibleProjects = computed(() => 
+  projects.slice(0, visibleCount.value)
+)
+
+// Показывать ли кнопку "Еще"
+const showLoadMore = computed(() => 
+  visibleCount.value < projects.length
+)
+
+// Инициализация Intersection Observer
 const initObservers = () => {
-    const options = {
-        threshold: 0.3,
-        rootMargin: '-20% 0px -20% 0px'
-    }
+  if (observer) {
+    observer.disconnect()
+  }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const index = projectRefs.value.findIndex(ref => ref === entry.target)
-            if (index !== -1) {
-                interprojects.value[index] = entry.isIntersecting
-            }
-        })
-    }, options)
+  const options = {
+    threshold: 0.3,
+    rootMargin: '-20% 0px -20% 0px'
+  }
 
-    // Наблюдаем за всеми секциями
-    projectRefs.value.forEach((project, index) => {
-        if (project) {
-            observer.observe(project)
-        }
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const index = projectRefs.value.findIndex(ref => ref === entry.target)
+      if (index !== -1) {
+        interprojects.value[index] = entry.isIntersecting
+      }
     })
+  }, options)
 
-    return observer
-};
+  // Наблюдаем за всеми видимыми проектами
+  nextTick(() => {
+    projectRefs.value.forEach((project, index) => {
+      if (project && index < visibleCount.value) {
+        observer.observe(project)
+      }
+    })
+  })
+}
+
+// Функция для подгрузки еще проектов
+const loadMore = async () => {
+  visibleCount.value += projectsPerLoad
+  
+  // Ждем обновления DOM и переинициализируем observer
+  await nextTick()
+  initObservers()
+}
 
 const emit = defineEmits(['select'])
-// Метод для обработки клика
+
 function handleSelect(selectedItem) {
-  // Вызвать событие 'select' и передать объект item
   emit('select', selectedItem)
   console.log('select', selectedItem)
 }
 
 onMounted(() => {
-    const observer = initObservers()
+  // Инициализируем interprojects для всех проектов
+  interprojects.value = projects.map(() => false)
+  initObservers()
+})
 
-    onUnmounted(() => {
-        observer.disconnect()
-    })
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
 })
 </script>
 
 <style scoped lang="scss">
 @use '@/assets/css/variables' as v;
 
-.projects {
-    width: 100%;
+
+    .projects {
+       flex-direction: column;
+    display: flex;
+    align-items: center; 
+&__list {
+width: 100%;
+}
+
+    
 }
 
 .project {
@@ -138,6 +388,10 @@ onMounted(() => {
     min-height: 365px;
 
         margin-bottom: 4rem;
+
+        &__button {
+          cursor: pointer;
+        }
 
     &__left,
     &__middle {
@@ -152,7 +406,7 @@ onMounted(() => {
 
     }
     &__middle {
-        background: #2c3e50;
+        background-color: v.$bg-color-light;
         right: 0;
         z-index: 2;
                 padding: 3px;
@@ -162,16 +416,17 @@ onMounted(() => {
             height: 200px;
             object-fit: cover;
             cursor: pointer;
+            border-radius: 0 40px;
             @media (min-width: 768px) {
                 height: 100%;
             }
         }
     }
     &__left {
-        background: rgba(44, 62, 80, 0.9);
+        background-color: v.$bg-color-light;
         left: 50%;
         z-index: 1;
-        padding: 10px 14px;
+        padding: 20px 15px;
 .animate 
         & {
                 left: 0;

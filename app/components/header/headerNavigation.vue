@@ -47,7 +47,24 @@ const headerLinks: NavItem[] = [{
 .navigation {
   &__list {
     display: flex;
-    
+
+    @media (max-width: 900px) {
+      padding: 0;
+      position: absolute;
+      display: none;
+
+      .navigation-open & {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__item {
+    @media (max-width: 900px) {
+      margin-bottom: 15px;
+    }
   }
 
   &__link {

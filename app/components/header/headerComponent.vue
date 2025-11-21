@@ -1,10 +1,23 @@
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
+import HeaderNavigation from './headerNavigation.vue'
 
+const isOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  isOpen.value = !isOpen.value
+}
+
+const closeModalMenu = () => {
+  isOpen.value = false
+}
 </script>
 
 <template>
-<header class="header">
-  <header-navigation-bar/>
+<header class="header"> 
+   <div class="header__col header__col-navigation" :class="{ 'navigation-open' : isOpen }"><HeaderNavigation /></div>
+
+  <header-hamburger @addClassOpen="toggleMobileMenu" :isOpen="isOpen"/>
 </header>
 </template>
 
@@ -18,13 +31,40 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 9%;
+    padding: 2rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    z-index: 80;
     transition: .3s;
     justify-content: flex-end;
     height: 75px;
+
+  @media (max-width: 900px) {
+  &__col-navigation {
+    width: 0;
+    position: absolute;
+    right: 0;
+    top: 75px;
+    background-color: rgba(v.$bg-color, .8);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: width .3s;
+    height: calc(100vh - 68px);
+    overflow: auto;
+  }
+
+  .navigation-open {
+    width: 250px;
+    z-index: 90;
+
+    @media (max-width: 480px) {
+      width: 100%;
+    }
+  }
+}
 }
 </style>

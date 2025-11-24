@@ -53,7 +53,7 @@ const closeModalMenu = () => {
     justify-content: center;
     flex-direction: column;
     transition: width .3s;
-    height: calc(100vh - 68px);
+    height: 100vh;
     overflow: auto;
   }
 

@@ -35,7 +35,6 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
   &__content {
     max-width: 40rem;
-    z-index: 99;
     color: v.$text-color;
   }
 
@@ -45,6 +44,11 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.3;
+
+    @media (max-width: 420px) {
+      font-size: 2.5rem;
+      line-height: 1.1;
+    }
   }
 
   &__animate {
@@ -59,6 +63,11 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
     -webkit-background-clip: text;
     background-clip: text;
     background-position: -33rem 0;
+
+        @media (max-width: 380px) {
+      transform: scale(0.85);
+      transform-origin: left center;
+    }
 
     /* Анимация для текста при наличии класса show-animate */
     .show-animate & {
@@ -89,6 +98,10 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
   &__buttons {
     display: flex;
+
+    @media (max-width: 420px) {
+      flex-direction: column;
+    }
   }
 
 &__icon {
@@ -98,7 +111,10 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
 .button {
   &__blue {
-    margin-right: 30px;
+    margin: 0 30px 0 0;
+    @media (max-width: 420px) {
+      margin: 0 0 20px;
+    }
   }
 
   &__black {

@@ -86,6 +86,14 @@ function handleClick(item) {
     .works &:hover {
       transform: translateY(0px) scale(1.03) translateZ(0px);
     }
+
+    @media (max-width: 580px) {
+        padding: 4rem 1.5rem 1.5rem 1.5rem;
+    }
+
+    @media (max-width: 400px) {
+      margin: 0 0 2rem 1rem;
+    }
   }
 
   &__dates {
@@ -96,6 +104,9 @@ function handleClick(item) {
     color: #081b29;
     border-radius: 17px;
     padding: 5px 15px;
+@media (max-width: 580px) {
+    margin-right: 10px;
+}
   }
 
   &__label {
@@ -109,6 +120,10 @@ function handleClick(item) {
       display: flex;
       align-items: center;
       margin-bottom: 15px;
+
+      @media (max-width: 445px) {
+    flex-direction: column;
+}
     }
   }
 
@@ -117,15 +132,24 @@ function handleClick(item) {
     flex-direction: column;
 
     &:first-child {
-      margin-right: 20px;
+      margin: 0 20px 0 0;
+      @media (max-width: 445px) {
+        margin: 0 0 20px ;
+      }
     }
   }
 
   &__image {
     width: 50px;
-    object-fit: cover;
+        height: 50px;
     display: block;
-    border-radius: 50%;
+        border-radius: 50%;
+    background-color: #fff;
+
+          @media (max-width: 445px) {
+            width: 65px;
+        height: 65px;
+      }
   }
 
   &-charge {

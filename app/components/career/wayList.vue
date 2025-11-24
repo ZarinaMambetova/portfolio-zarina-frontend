@@ -48,7 +48,7 @@ const works = ref ([{
 {
   id: 2,
   type: 'work',
-  logo: './svg/tkb.svg',
+  logo: './svg/tkbbank.svg',
   name: 'Транскапиталбанк',
   post: 'Frontend/HTML-верстальщик (Junior), контент-менеджмент',
   dates:'Октябрь 2020 — Февраль 2022 (1 год и 5 месяцев)',

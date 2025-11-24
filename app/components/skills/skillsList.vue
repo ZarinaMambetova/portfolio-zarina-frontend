@@ -176,16 +176,23 @@ watch(
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+justify-content: space-between;
     width: 80%;
     margin: 0 auto;
-    gap: 15px;
+    gap: 25px;
+
+    @media (max-width: 970px) {
+      width: 100%;
+    }
+
+        @media (max-width: 558px) {
+      justify-content: center;
+    }
   }
 
    &__item { 
     width: 100px;
     text-align: center;
-    margin: 10px 20px 20px 0;
     transition: transform 3s ease 3s;
 
     &:hover {

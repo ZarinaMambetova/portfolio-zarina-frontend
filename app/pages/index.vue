@@ -8,6 +8,7 @@ import ProjectsAnimation from '~/components/projects/projectsAnimation.vue';
 
 import { ref } from 'vue';
 import WayList from '~/components/career/wayList.vue';
+import ContactList from '~/components/contacts/contactList.vue';
 
 // Конфигурация анимаций
 const animationConfig = {
@@ -93,14 +94,14 @@ const parseLinks = (text) => {
             </section>
     
             <section class="section career" id="career" ref="careerRef">
-                <div class="container">
+                <div class="container career__container">
                     <MainTitle firstWord="Моя" secondWord="карьера" />
                     <WayList @select="showModal" :isShowCareer="isShowCareer"/>
                 </div>
             </section>
     
-            <section class="section contact" id="projects">
-                <div class="container">
+            <section class="section projects" id="projects">
+                <div class="container projects__container">
                     <MainTitle firstWord="Мои" secondWord="проекты" />
                     <ProjectsAnimation @select="showModal" />
 
@@ -110,7 +111,7 @@ const parseLinks = (text) => {
             <section class="section contact" id="contact">
                 <div class="container">
                     <MainTitle firstWord="Мои" secondWord="контакты" />
-                    <NuxtLink to="/">Главная</NuxtLink>
+                    <ContactList/>
                 </div>
             </section>
         </div>

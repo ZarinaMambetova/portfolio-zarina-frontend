@@ -1,7 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import titleShared from '@/components/shared/titleShared.vue';
-import wayItem from '@/components/career/wayItem.vue';
 
 const props = defineProps({
   isShowCareer: Boolean,
@@ -91,7 +89,7 @@ function handleSelect(selectedItem) {
 <template>
 <div class="career__content" v-if="showAnimation">
     <!-- 1. Опыт работы -->
-    <titleShared 
+    <SharedTitleShared 
       title="Опыт работы" 
       class="career__title animated-element"
       :style="{ 'animation-delay': '0.3s' }"
@@ -99,7 +97,7 @@ function handleSelect(selectedItem) {
 
     <!-- 2. Список работ -->
     <ul class="career__list works">
-      <wayItem 
+      <CareerWayItem  
         v-for="work, index in works" 
         :item="work"
         :key="work.id" 
@@ -110,7 +108,7 @@ function handleSelect(selectedItem) {
     </ul>
 
     <!-- 3. Образование -->
-    <titleShared 
+    <SharedTitleShared 
       title="Образование" 
       class="career__title animated-element"
       :style="{ 'animation-delay': (0.5 + works.length * 0.2 + 0.2) + 's' }"
@@ -118,7 +116,7 @@ function handleSelect(selectedItem) {
 
     <!-- 4. Список образования -->
     <ul class="career__list">
-      <wayItem 
+      <CareerWayItem 
         v-for="period, index in education" 
         :key="period.id" 
         :item="period"

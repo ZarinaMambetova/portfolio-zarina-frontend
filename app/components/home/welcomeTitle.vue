@@ -9,8 +9,9 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
 
         <p class="welcome__text">
           6 лет опыта в сфере веб-разработки, из которых более трех лет 
-              связана с созданием сложных и качественных интерфейсов на Vue.js (Options API, Composition API), Storybook, Vite, Pinia,
-            осуществляю интеграцию фронтенда с внутренними и внешними сервисами через REST API, тестирование на Jest.
+              связана с созданием сложных и качественных интерфейсов на Vue.js. <br/><br/>
+              <h4>Разработчик, который продолжает любить верстку.</h4>
+         
              </p>
     
         <div class="welcome__buttons">

@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import HeaderNavigation from './headerNavigation.vue'
 
 const isOpen = ref(false)
 
@@ -15,7 +14,7 @@ const closeModalMenu = () => {
 
 <template>
 <header class="header"> 
-   <div class="header__col header__col-navigation" :class="{ 'navigation-open' : isOpen }"><HeaderNavigation /></div>
+   <div class="header__col header__col-navigation" :class="{ 'navigation-open' : isOpen }"><header-navigation /></div>
 
   <header-hamburger @addClassOpen="toggleMobileMenu" :isOpen="isOpen"/>
 </header>

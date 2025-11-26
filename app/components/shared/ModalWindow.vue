@@ -1,3 +1,9 @@
+<script setup>
+defineProps(['modelValue'])
+
+defineEmits(['update:modelValue'])
+</script>
+
 <template>
   <Teleport to="#teleports">
      <transition
@@ -23,12 +29,6 @@
 
   </Teleport>
 </template>
-
-<script setup>
-defineProps(['modelValue'])
-
-defineEmits(['update:modelValue'])
-</script>
 
 <style scoped lang="scss">
 @use '@/assets/css/variables' as v;

@@ -1,11 +1,3 @@
-<template>
-    <div v-if="isVisible" class="welcome-overlay">
-        <div class="welcome-overlay__block welcome-overlay__block-grey"></div>
-        <div class="welcome-overlay__block welcome-overlay__block-green"></div>
-        <div class="welcome-overlay__block welcome-overlay__block-white"></div>
-    </div>
-</template>
-
 <script setup>
 const isVisible = ref(true)
 
@@ -16,6 +8,14 @@ onMounted(() => {
     }, 1500) // Общее время анимации
 })
 </script>
+
+<template>
+    <div v-if="isVisible" class="welcome-overlay">
+        <div class="welcome-overlay__block welcome-overlay__block-grey"></div>
+        <div class="welcome-overlay__block welcome-overlay__block-green"></div>
+        <div class="welcome-overlay__block welcome-overlay__block-white"></div>
+    </div>
+</template>
 
 <style scoped lang="scss">
 @use '@/assets/css/variables' as v;

@@ -1,14 +1,5 @@
 <script setup>
-import WelcomeTitle from '~/components/home/welcomeTitle.vue';
-import MainTitle from '~/components/shared/mainTitle.vue';
-import ScrollUp from '~/components/shared/scrollUp.vue';
-import ScrollDown from '~/components/shared/scrollDown.vue';
-import ModalWindow from '~/components/shared/modalWindow.vue';
-import ProjectsAnimation from '~/components/projects/projectsAnimation.vue';
-
 import { ref } from 'vue';
-import WayList from '~/components/career/wayList.vue';
-import ContactList from '~/components/contacts/contactList.vue';
 
 // Конфигурация анимаций
 const animationConfig = {
@@ -62,21 +53,22 @@ const parseLinks = (text) => {
 <template>
     <div class="wrapper">
     
-        <header-component/>
+
     
         <div class="main">
     
             <section class="section home show-animate" id="home">
-                <div class="container">
-                    <WelcomeTitle></WelcomeTitle>
-                    <ScrollDown />
+                <div class="container home__container">
+                    <HomeWelcomeTitle  class="home__title"/>
+                    <HomeWelcomeList class="home__code" />
+                    <SharedScrollDown />
                 </div>
             </section>
     
             <section class="section about" id="about">
                 <div class="container about__container">
     
-                    <MainTitle firstWord="Обо" secondWord="мне" />
+                    <SharedMainTitle firstWord="Обо" secondWord="мне" />
     
                     <about-image />
     
@@ -87,7 +79,7 @@ const parseLinks = (text) => {
     
             <section class="section skills" id="skills" ref="skillsRef">
                 <div class="container">
-                    <MainTitle firstWord="Навыки" secondWord=" и инструменты" />
+                    <SharedMainTitle firstWord="Навыки" secondWord=" и инструменты" />
     
                     <SkillsList :isShowAnimate="isShowAnimate" />
                 </div>
@@ -95,14 +87,14 @@ const parseLinks = (text) => {
     
             <section class="section career" id="career" ref="careerRef">
                 <div class="container career__container">
-                    <MainTitle firstWord="Моя" secondWord="карьера" />
-                    <WayList @select="showModal" :isShowCareer="isShowCareer"/>
+                    <SharedMainTitle firstWord="Моя" secondWord="карьера" />
+                    <CareerWayList @select="showModal" :isShowCareer="isShowCareer"/>
                 </div>
             </section>
     
             <section class="section projects" id="projects">
                 <div class="container projects__container">
-                    <MainTitle firstWord="Мои" secondWord="проекты" />
+                    <SharedMainTitle firstWord="Мои" secondWord="проекты" />
                     <ProjectsAnimation @select="showModal" />
 
                 </div>
@@ -110,15 +102,15 @@ const parseLinks = (text) => {
     
             <section class="section contact" id="contact">
                 <div class="container">
-                    <MainTitle firstWord="Мои" secondWord="контакты" />
-                    <ContactList/>
+                    <SharedMainTitle firstWord="Мои" secondWord="контакты" />
+                    <ContactsContactList/>
                 </div>
             </section>
         </div>
     
-        <scroll-up/>
+        <SharedScrollUp/>
     
-        <ModalWindow v-model="isModalOpen">
+        <SharedModalWindow v-model="isModalOpen">
             <template v-if="selectedItem">
                 <div v-if="selectedItem.type === 'work'">
                 <h2 class="modal__name">{{ selectedItem.name }}</h2>
@@ -138,7 +130,7 @@ const parseLinks = (text) => {
                 <img  class="modal-project__image" :src="selectedItem.middleImage" alt="" />
                 </div>
 </template>
-        </ModalWindow>
+        </SharedModalWindow>
     
     </div>
 </template>
@@ -167,6 +159,38 @@ const parseLinks = (text) => {
     align-items: center;
     min-height: 100vh;
     position: relative;
+
+    &__container {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+
+        @media (max-width: 1500px) {
+          justify-content: space-between;
+        }
+
+        @media (max-width: 880px) {
+          flex-direction: column;
+        }
+    }
+
+    &__title {
+      width: 40%;
+
+        @media (max-width: 880px) {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+    }
+
+    &__code {
+      width: 50%;
+
+        @media (max-width: 880px) {
+          width: 100%;
+          margin: 0 auto 20px;
+        }
+    }
 }
 
 .about {

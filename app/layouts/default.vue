@@ -27,10 +27,11 @@ onUnmounted(() => {
 <template>
   <div>
     <WelcomeOverlay />
-    
+    <header-component/>
     <div>
       <slot />
     </div>
+    <FooterComponent />
     
     <div ref="progressBarEl" class="progress-bar"></div>
   </div>

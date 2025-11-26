@@ -28,24 +28,25 @@
             </ul>
 
             <div class="project__buttons">
-              <NuxtLink
-                :to="project.site"
+              <a
+                :href="project.site"
                 class="button project__button button__blue"
                 target="_blank"
                 :class="{ unactive: !project.site }"
                 :disabled="!project.site"
               >
                 Посмотреть
-              </NuxtLink>
+              </a>
 
-              <NuxtLink
-                :to="project.github"
+              <a
+                :href="project.github"
+                target="_blank"
                 class="button project__button button__black"
                 :class="{ unactive: !project.github }"
                 :disabled="!project.github"
               >
                 GitHub
-              </NuxtLink>
+              </a>
             </div>
           </div>
         </div>

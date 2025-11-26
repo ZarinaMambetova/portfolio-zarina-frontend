@@ -176,7 +176,7 @@ watch(
   &__list {
     display: flex;
     flex-wrap: wrap;
-justify-content: space-between;
+    justify-content: center;
     width: 80%;
     margin: 0 auto;
     gap: 25px;

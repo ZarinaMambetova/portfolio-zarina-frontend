@@ -1,0 +1,1 @@
+import{c as e,o as r,a as n,d as s,w as a,b as _,_ as c}from"#entry";import{_ as d}from"./DlAUqK2U.js";const p={};function l(f,o,m,u,i,x){const t=c;return r(),e("section",null,[o[1]||(o[1]=n("h1",null,"Error 404",-1)),s(t,{to:"/"},{default:a(()=>[...o[0]||(o[0]=[_("Home",-1)])]),_:1})])}const B=d(p,[["render",l],["__scopeId","data-v-7a3190fd"]]);export{B as default};

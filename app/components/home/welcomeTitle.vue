@@ -7,12 +7,12 @@ import IconSvg from '~/assets/icons/download-pdf.svg';
             <h1 class="welcome__big-title">Зарина Мамбетова</h1>
                 <h3 class="welcome__animate">Frontend Developer</h3>
 
-        <p class="welcome__text">
+        <div class="welcome__text">
           6 лет опыта в сфере веб-разработки, из которых более трех лет 
               связана с созданием сложных и качественных интерфейсов на Vue.js. <br/><br/>
               <h4>Разработчик, который продолжает любить верстку.</h4>
          
-             </p>
+             </div>
     
         <div class="welcome__buttons">
             <NuxtLink to="#projects" class="welcome__button button__blue button">Проекты</NuxtLink>

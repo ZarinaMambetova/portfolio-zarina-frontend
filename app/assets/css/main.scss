@@ -62,7 +62,7 @@ a {
 }
 
 .unactive {
-  opacity: .2;
+  opacity: .1;
   pointer-events: none;
   cursor: default;
 }
@@ -80,6 +80,10 @@ a {
   transition: 0.5s;
   padding: 10px 35px;
   line-height: 1.3rem;
+
+    @media (max-width: 960px) {
+      padding: 10px 25px;
+    }
 
     &::before {
     content: '';

@@ -24,7 +24,11 @@ function handleClick(item) {
 
       <div class="item__column">
         <div class="item__label">{{ item.name }}</div>
-        <div class="item__post">{{ item.post }}</div>
+        <div class="item__post">
+          <div class="item__post-name">{{ item.post }}</div>
+          <div v-if="item.type === 'work'" class="item__post-more">Подробнее</div>
+        </div>
+        
 
       </div>
     </div>
@@ -84,7 +88,8 @@ function handleClick(item) {
     transition: transform 0.3s ease;
 
     .works &:hover {
-      transform: translateY(0px) scale(1.03) translateZ(0px);
+      transform: translateY(0px) scale(1.01) translateZ(0px);
+      cursor: pointer;
     }
 
     @media (max-width: 580px) {
@@ -100,7 +105,7 @@ function handleClick(item) {
     position: absolute;
     top: -18px;
     left: 22px;
-    background-color: #00dc82;
+    background-color: v.$main-green;
     color: #081b29;
     border-radius: 17px;
     padding: 5px 15px;
@@ -114,6 +119,22 @@ function handleClick(item) {
     font-size: 25px;
     margin-bottom: 5px;
   }  
+
+  &__post {
+    display: flex;
+    gap: 15px;
+
+    @media (max-width: 890px) {
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    &-more {
+      color: v.$main-green;
+      font-weight: bold;
+    }
+  }
+    
 
   &__row {
     &-top {

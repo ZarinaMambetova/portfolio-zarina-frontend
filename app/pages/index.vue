@@ -209,6 +209,11 @@ const parseLinks = (text) => {
     }
 }
 
+.skills {
+    overflow: hidden;
+}
+
+
 .modal {
     &__name {
         margin-bottom: 15px;

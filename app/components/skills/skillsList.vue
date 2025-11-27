@@ -181,6 +181,7 @@ watch(
     margin: 0 auto;
     gap: 25px;
 
+
     @media (max-width: 970px) {
       width: 100%;
     }

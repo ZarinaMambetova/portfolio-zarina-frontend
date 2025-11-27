@@ -70,7 +70,7 @@ const toggleHamburger = () => {
 
   &__line-2 {
     transform-origin: 100% 50%;
-    transform: scaleX(1);
+    transform: scaleX(.8);
   }
 
   &__lines:hover .header-hamburger__line-2 {

@@ -498,6 +498,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @use "@/assets/css/variables" as v;
+
 .projects {
   flex-direction: column;
   display: flex;
@@ -518,9 +519,7 @@ onUnmounted(() => {
   @media (max-width: 1530px) {
     min-height: 465px;
   }
-  &__button {
-    cursor: pointer;
-  }
+
   &__left,
   &__middle {
     color: #fff;
@@ -558,11 +557,11 @@ onUnmounted(() => {
       cursor: pointer;
       border-radius: 0 40px;
       @media (max-width: 895px) {
-        height: 360px;
+        height: 300px;
         border: #112e42 solid 2px;
       }
       @media (max-width: 420px) {
-        height: 180px;
+        height: 160px;
       }
     }
   }

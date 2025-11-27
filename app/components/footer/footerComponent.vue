@@ -19,8 +19,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 80;
-    height: 75px;
     color: v.$light-gray;
 
     &__col {

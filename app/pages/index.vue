@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import { useAnimationStore } from '@/stores/animationStore'
 
+const animationStore = useAnimationStore()
 // Конфигурация анимаций
 const animationConfig = {
   skills: {
@@ -22,15 +24,15 @@ const { targetRef: skillsRef, isIntersecting: skillsIntersecting } =
 const { targetRef: careerRef, isIntersecting: careerIntersecting } = 
   useIntersectionObserver(animationConfig.career)
 
-// Запускаем анимацию только один раз
+// Запускаем анимацию только один раз, если анимации включены
 watch(skillsIntersecting, (newVal) => {
-  if (newVal && !isShowAnimate.value) {
+  if (newVal && !isShowAnimate.value && animationStore.active) {
     isShowAnimate.value = true
   }
 })
 
 watch(careerIntersecting, (newVal) => {
-  if (newVal && !isShowCareer.value) {
+  if (newVal && !isShowCareer.value && animationStore.active) {
     isShowCareer.value = true
   }
 })
@@ -73,6 +75,8 @@ const parseLinks = (text) => {
                     <about-image />
     
                     <AboutMe />
+
+                    <AboutRunningLine />
     
                 </div>
             </section>
@@ -149,6 +153,10 @@ const parseLinks = (text) => {
 .section {
     min-height: 100vh;
     display: flex;
+
+    &.contact {
+        min-height: initial;
+    }
     &:nth-child(even) {
         background-color: v.$bg-color-light;
         border-radius: 7rem 0;
@@ -194,6 +202,7 @@ const parseLinks = (text) => {
 }
 
 .about {
+      overflow: hidden;
     &__container {
         display: flex;
         align-items: center;

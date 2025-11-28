@@ -14,7 +14,7 @@ const closeModalMenu = () => {
 
 <template>
 <header class="header"> 
-   <div class="header__col header__col-navigation" :class="{ 'navigation-open' : isOpen }"><header-navigation /></div>
+   <div class="header__col header__col-navigation" :class="{ 'navigation-open' : isOpen }"><header-navigation @closeMobileMenu="closeModalMenu" /></div>
 
   <header-hamburger @addClassOpen="toggleMobileMenu" :isOpen="isOpen"/>
 </header>

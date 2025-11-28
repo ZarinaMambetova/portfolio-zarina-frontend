@@ -206,7 +206,7 @@ watch(
     width: 64px;
     height: 64px;
     padding: 8px;
-    background: v.$bg-color;
+    background: transparent;
     transition: 100ms ease-out;
   }
 

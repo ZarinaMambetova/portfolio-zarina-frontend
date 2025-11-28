@@ -1,5 +1,9 @@
 // composables/useIntersectionObserver.ts
+import { inject, ref, onMounted, onUnmounted } from 'vue'
+import { useAnimationStore } from '@/stores/animationStore'
+
 export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
+  const animationStore = useAnimationStore()
   const isIntersecting = ref(false)
   const targetRef = ref<HTMLElement | null>(null)
   const observer = ref<IntersectionObserver | null>(null)
@@ -9,9 +13,14 @@ export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
 
     observer.value = new IntersectionObserver((entries) => {
       const entry = entries[0]
-      if (entry) {
-        isIntersecting.value = entry.isIntersecting
+      if (!entry) return
+
+      // Проверим состояние анимаций
+      if (!animationStore.active) {
+        return
       }
+
+      isIntersecting.value = entry.isIntersecting
     }, options)
 
     observer.value.observe(targetRef.value)

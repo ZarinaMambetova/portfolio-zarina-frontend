@@ -14,18 +14,17 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
 });
-
-const scrollUp = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
 </script>
 
 <template>
-  <button v-if="scrollY > 500" class="scroll__button" @click.prevent="scrollUp" type="button">
-    <div class="scroll__icon">
+
+          <NuxtLink 
+         v-if="scrollY > 500" class="scroll__button"
+          to="#home"
+>    <div class="scroll__icon">
       <IconSvg  class="scroll__icon-pic" />
     </div>
-  </button>
+        </NuxtLink>
 </template>
 
 <style lang="scss" scoped>

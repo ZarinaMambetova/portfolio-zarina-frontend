@@ -1,7 +1,25 @@
-<script setup lang="ts">
-import type { NavItem } from '~/types/interfaces';
+<script setup>
+import { useAnimationStore } from '@/stores/animationStore'
 
-const headerLinks: NavItem[] = [{
+const animationStore = useAnimationStore()
+
+function scrollToSection(id) {
+  // Остановить анимации
+  animationStore.pause()
+
+  const target = document.getElementById(id)
+  if (!target) return
+
+  target.scrollIntoView({ behavior: 'smooth' })
+
+  // Ждем примерно окончания скролла — например, 600ms
+  setTimeout(() => {
+    // Возобновить анимации
+    animationStore.resume()
+  }, 600)
+}
+
+const headerLinks = [{
   path: 'home',
   name: 'Главная'
 },
@@ -27,6 +45,12 @@ const headerLinks: NavItem[] = [{
   name: 'Мои контакты'
 },
 ]
+
+const emit = defineEmits(['closeMobileMenu'])
+// Метод для обработки клика
+function closeMenu() {
+  emit('closeMobileMenu')
+}
 </script>
 
 <template>
@@ -36,7 +60,8 @@ const headerLinks: NavItem[] = [{
       v-for="link, index in headerLinks" :key="index">
         <NuxtLink 
         class="navigation__link"
-          :to="`#${link.path}`">{{link.name}}
+          :to="`#${link.path}`"
+          @click.prevent="scrollToSection(link.path), closeMenu">{{link.name}}
         </NuxtLink>
 
       </li>

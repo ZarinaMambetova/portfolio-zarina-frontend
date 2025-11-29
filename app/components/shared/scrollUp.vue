@@ -31,10 +31,12 @@ onUnmounted(() => {
 @use '@/assets/css/variables' as v;
 
 .scroll {
-      &__icon-pic {
+      &__icon {
+        display: flex;
+        &-pic {
       color: v.$text-color; /* чтобы наследовать цвет или задавать явно */
 
-    }
+    }}
   &__button {
     display: inline-block;
     text-align: center;

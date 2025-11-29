@@ -135,7 +135,7 @@ function handleSelect(selectedItem) {
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(30px);
-    animation: slideIn 1s forwards;
+    animation: slideIn 2s forwards;
   }
 
   &__list {
@@ -146,7 +146,7 @@ function handleSelect(selectedItem) {
   &__item {
   opacity: 0;
   transform: translateY(100px);
-  animation: slideIn 1s forwards;
+  animation: slideIn 2s forwards;
     
   }
 }

@@ -15,7 +15,7 @@ import IconSvg from '~/assets/icons/arrow-down.svg'
 @use '@/assets/css/variables' as v;
 
 .scroll-down {
-  width: 60px;
+  width: 45px;
   position: absolute;
   bottom: 4%;
   left: 50%;

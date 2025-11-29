@@ -1,40 +1,38 @@
 <template>
   <div class="marquee-container">
     <div class="marquee-content">
-      <!-- Первый набор слов -->
       <span 
-        v-for="(word, index) in words" 
+        v-for="(word, index) in duplicatedWords" 
         :key="`first-${index}`" 
         class="marquee-word"
       >
         {{ word }}
       </span>
       
-      <!-- Дублированный набор слов для бесшовности -->
-      <span 
-        v-for="(word, index) in words" 
-        :key="`second-${index}`" 
-        class="marquee-word"
-      >
-        {{ word }}
-      </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const words = [
-  '*', 'Frontend', 'Developer',  
-  'Успех', 'Профессионализм', 'Качество'
+  '⌨️', 'Frontend', 'Developer',  
+
 ]
+
+// Дублируем слова 4 раза для плавной анимации
+const duplicatedWords = [...words, ...words, ...words, ...words, ...words, ...words, ...words,]
 </script>
 
 <style lang="scss"  scoped>
 @use '@/assets/css/variables' as v;
+
 .marquee-container {
   width: 100%;
-  padding: 10px 0;
+  position: absolute;
   white-space: nowrap;
+  z-index: 5;
+  top: 25%;
+      mask-image: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%);
 }
 
 .marquee-content {
@@ -44,11 +42,13 @@ const words = [
 
 .marquee-word {
   display: inline-block;
-    margin: 30px 30px 0;
-    font-size: 75px;
-  color: v.$light-gray;
+  margin: 30px 30px 0;
+  font-size: 70px;
   opacity: .3;
-  font-style: italic;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px v.$light-gray;
+  font-family: initial;
 }
 
 @keyframes marquee {

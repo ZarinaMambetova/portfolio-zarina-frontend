@@ -11,7 +11,7 @@ function scrollToSection(id) {
   if (!target) return
 
   target.scrollIntoView({ behavior: 'smooth' })
-
+closeMenu()
   // Ждем примерно окончания скролла — например, 600ms
   setTimeout(() => {
     // Возобновить анимации
@@ -61,7 +61,7 @@ function closeMenu() {
         <NuxtLink 
         class="navigation__link"
           :to="`#${link.path}`"
-          @click.prevent="scrollToSection(link.path), closeMenu">{{link.name}}
+          @click.prevent="scrollToSection(link.path)">{{link.name}}
         </NuxtLink>
 
       </li>

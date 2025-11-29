@@ -22,10 +22,12 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+    z-index: 7;
   }
 
   &__pic {
-        width: 90%;
+    filter: saturate(0.5);
+    width: 90%;
     border-radius: 50%;
     border: .2rem solid v.$main-green;
   }

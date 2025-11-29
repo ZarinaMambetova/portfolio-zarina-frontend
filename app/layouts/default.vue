@@ -28,7 +28,7 @@ onUnmounted(() => {
   <div>
     <WelcomeOverlay />
     <header-component/>
-    <div>
+    <div class="default">
       <slot />
     </div>
     <FooterComponent />
@@ -49,5 +49,11 @@ onUnmounted(() => {
   background-color: v.$main-green;
   z-index: 9999;
   transition: width 0.1s ease;
+}
+
+.default {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 121px;
 }
 </style>

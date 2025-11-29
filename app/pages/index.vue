@@ -153,6 +153,7 @@ const parseLinks = (text) => {
 .section {
     min-height: 100vh;
     display: flex;
+    background-color: v.$bg-color;
 
     &.contact {
         min-height: initial;
@@ -203,6 +204,7 @@ const parseLinks = (text) => {
 
 .about {
       overflow: hidden;
+      position: relative;
     &__container {
         display: flex;
         align-items: center;

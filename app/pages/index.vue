@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useAnimationStore } from '@/stores/animationStore'
 
 const animationStore = useAnimationStore()
@@ -50,17 +50,47 @@ const parseLinks = (text) => {
   const urlRegex = /(https?:\/\/[^\s]+)/g
   return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
 }
+
+
+
+const homeRef = ref(null)
+
+const handleScroll = () => {
+    if (!homeRef.value) return
+    
+    const scrollY = window.scrollY
+    const initialScale = 1
+    const minScale = 0.5
+    const fadeStart = 100
+    const fadeEnd = 500
+    
+    let scale = initialScale
+    
+    if (scrollY > fadeStart) {
+        const progress = Math.min((scrollY - fadeStart) / (fadeEnd - fadeStart), 1)
+        scale = initialScale - progress * (initialScale - minScale)
+    }
+    
+    homeRef.value.style.transform = `scale(${scale})`
+    homeRef.value.style.opacity = scale
+}
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+})
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
     <div class="wrapper">
-    
-
-    
-        <div class="main">
+      <div class="main">
     
             <section class="section home show-animate" id="home">
-                <div class="container home__container">
+                <div class="container home__container"  ref="homeRef">
+                    
                     <HomeWelcomeTitle  class="home__title"/>
                     <HomeWelcomeList class="home__code" />
                     <SharedScrollDown />
@@ -151,7 +181,7 @@ const parseLinks = (text) => {
 }
 
 .section {
-    min-height: 100vh;
+    min-height: 70vh;
     display: flex;
     background-color: v.$bg-color;
 
@@ -173,6 +203,8 @@ const parseLinks = (text) => {
         display: flex;
         gap: 30px;
         justify-content: center;
+        transform-origin: center center;
+    will-change: transform, opacity;
 
         @media (max-width: 1500px) {
           justify-content: space-between;

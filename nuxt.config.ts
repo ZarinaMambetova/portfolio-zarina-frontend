@@ -13,7 +13,17 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.scss'],
   
-  modules: ['@pinia/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    ['nuxt-yandex-metrika', {
+      id: '105605045',
+      defer: true,
+      clickmap: true,
+      accurateTrackBounce: true,
+      trackHash: true,
+
+    }]
+  ],
 
   vite: {
     plugins: [

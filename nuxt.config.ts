@@ -15,15 +15,15 @@ export default defineNuxtConfig({
   
   modules: [
     '@pinia/nuxt',
-    ['nuxt-yandex-metrika', {
-      id: '105605045',
+    'nuxt-yandex-metrika'],
+    yandexMetrika: {
+    id: '105605045', 
+    options: { 
       defer: true,
       clickmap: true,
       accurateTrackBounce: true,
       trackHash: true,
-
-    }]
-  ],
+  }},
 
   vite: {
     plugins: [

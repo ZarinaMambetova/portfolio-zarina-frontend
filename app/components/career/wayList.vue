@@ -27,7 +27,7 @@ const education = ref ([{
   logo: './image/agu.png',
   name: 'Астраханский государственный университет',
   post: 'Факультет мировой экономики и управления',
-  dates:'Март 2003 — Май 2007',
+  dates:'',
   desc:'Менеджер. Государственное и муниципальное управление',
 },
 ])
@@ -87,7 +87,7 @@ function handleSelect(selectedItem) {
 </script>
 
 <template>
-<div class="career__content" v-if="showAnimation">
+<div class="career__content" :class="{ 'animate-start': showAnimation }">
     <!-- 1. Опыт работы -->
     <SharedTitleShared 
       title="Опыт работы" 
@@ -133,9 +133,11 @@ function handleSelect(selectedItem) {
 .career {
   &__title {
     margin-bottom: 40px;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(30px);
-    animation: slideIn 2s forwards;
+
+    .animate-start &
+    {animation: slideIn 2s forwards;}
   }
 
   &__list {
@@ -144,9 +146,11 @@ function handleSelect(selectedItem) {
   }
 
   &__item {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(100px);
-  animation: slideIn 2s forwards;
+
+  .animate-start &
+  {animation: slideIn 2s forwards;}
     
   }
 }
@@ -155,7 +159,6 @@ function handleSelect(selectedItem) {
 
 @keyframes slideIn {
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }

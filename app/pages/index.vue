@@ -1,42 +1,52 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useAnimationStore } from '@/stores/animationStore'
+import { useIntersectionObserver } from '@/composables/useIntersectionObserver'
 
 const animationStore = useAnimationStore()
-// Конфигурация анимаций
-const animationConfig = {
-  skills: {
-    threshold: 0.2,
-    rootMargin: '-20% 0px -20% 0px'
-  },
-  career: {
-    threshold: 0.2,
-    rootMargin: '-25% 0px -25% 0px'
-  }
-}
+
+// Refs для элементов
+const skillsRef = ref(null)
+const careerRef = ref(null)
 
 const isShowAnimate = ref(false)
 const isShowCareer = ref(false)
 
-const { targetRef: skillsRef, isIntersecting: skillsIntersecting } = 
-  useIntersectionObserver(animationConfig.skills)
-
-const { targetRef: careerRef, isIntersecting: careerIntersecting } = 
-  useIntersectionObserver(animationConfig.career)
-
-// Запускаем анимацию только один раз, если анимации включены
-watch(skillsIntersecting, (newVal) => {
-  if (newVal && !isShowAnimate.value && animationStore.active) {
-    isShowAnimate.value = true
+// Используем composable
+const { isIntersecting: skillsIntersecting } = useIntersectionObserver(
+  skillsRef,
+  {
+    threshold: 0.2,
+    rootMargin: '-20% 0px -20% 0px'
+  },
+  (isIntersecting) => {
+    if (isIntersecting && !isShowAnimate.value && animationStore.active) {
+      isShowAnimate.value = true
+    }
   }
+)
+
+const { isIntersecting: careerIntersecting } = useIntersectionObserver(
+  careerRef,
+  {
+    threshold: 0.2,
+    rootMargin: '-30% 0px 0px 0px'
+  },
+  (isIntersecting) => {
+    if (isIntersecting && !isShowCareer.value && animationStore.active) {
+      isShowCareer.value = true
+      console.log("isShowCareer", true)
+    }
+  }
+)
+
+// Для отладки - выводим в консоль
+onMounted(() => {
+  console.log('Skills ref:', skillsRef.value)
+  console.log('Career ref:', careerRef.value)
 })
 
-watch(careerIntersecting, (newVal) => {
-  if (newVal && !isShowCareer.value && animationStore.active) {
-    isShowCareer.value = true
-  }
-})
-
+// Остальной код без изменений
 const isModalOpen = ref(false)
 const selectedItem = ref(null)
 
@@ -51,8 +61,6 @@ const parseLinks = (text) => {
   return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
 }
 
-
-
 const homeRef = ref(null)
 
 const handleScroll = () => {
@@ -60,9 +68,9 @@ const handleScroll = () => {
     
     const scrollY = window.scrollY
     const initialScale = 1
-    const minScale = 0.5
-    const fadeStart = 100
-    const fadeEnd = 500
+    const minScale = 0
+    const fadeStart = 300
+    const fadeEnd = 700
     
     let scale = initialScale
     
@@ -90,9 +98,10 @@ onUnmounted(() => {
     
             <section class="section home show-animate" id="home">
                 <div class="container home__container"  ref="homeRef">
-                    
-                    <HomeWelcomeTitle  class="home__title"/>
+                    <div class="home__row" ><HomeWelcomeTitle  class="home__title"/>
                     <HomeWelcomeList class="home__code" />
+                </div>
+                    
                     <SharedScrollDown />
                 </div>
             </section>
@@ -195,18 +204,24 @@ onUnmounted(() => {
 }
 
 .home {
-    align-items: center;
     min-height: 100vh;
     position: relative;
 
     &__container {
         display: flex;
+            align-items: center;
         gap: 30px;
         justify-content: center;
-        transform-origin: center center;
+        transform-origin: bottom center;
     will-change: transform, opacity;
 
-        @media (max-width: 1500px) {
+
+    }
+
+    &__row {
+      display: flex;
+      justify-content: center;
+              @media (max-width: 1500px) {
           justify-content: space-between;
         }
 

@@ -16,7 +16,7 @@ function handleClick(item) {
    @click="handleClick(item)"
   >
   <div  class="item__content">
-    <div class="item__dates">{{ item.dates }}</div>
+    <div v-if="item.dates" class="item__dates">{{ item.dates }}</div>
     <div class="item__row item__row-top">
       <div class="item__column">
         <img :src="item.logo" alt="логотип" class="item__image" />

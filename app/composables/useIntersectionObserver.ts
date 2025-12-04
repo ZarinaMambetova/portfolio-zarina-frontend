@@ -1,39 +1,39 @@
-// composables/useIntersectionObserver.ts
-import { inject, ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useAnimationStore } from '@/stores/animationStore'
 
-export const useIntersectionObserver = (options?: IntersectionObserverInit) => {
+export const useIntersectionObserver = (
+  elementRef: Ref<HTMLElement | null>,
+  options?: IntersectionObserverInit,
+  callback?: (isIntersecting: boolean, entry?: IntersectionObserverEntry) => void
+) => {
   const animationStore = useAnimationStore()
   const isIntersecting = ref(false)
-  const targetRef = ref<HTMLElement | null>(null)
-  const observer = ref<IntersectionObserver | null>(null)
 
   onMounted(() => {
-    if (!targetRef.value) return
+    if (!elementRef.value) return
 
-    observer.value = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-      if (!entry) return
-
-      // Проверим состояние анимаций
-      if (!animationStore.active) {
-        return
-      }
-
-      isIntersecting.value = entry.isIntersecting
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!animationStore.active) return
+        
+        const intersecting = entry.isIntersecting
+        isIntersecting.value = intersecting
+        
+        if (callback) {
+          callback(intersecting, entry)
+        }
+      })
     }, options)
 
-    observer.value.observe(targetRef.value)
-  })
+    observer.observe(elementRef.value)
 
-  onUnmounted(() => {
-    if (observer.value) {
-      observer.value.disconnect()
-    }
+    // Очистка
+    onUnmounted(() => {
+      observer.disconnect()
+    })
   })
 
   return {
-    targetRef,
     isIntersecting
   }
 }

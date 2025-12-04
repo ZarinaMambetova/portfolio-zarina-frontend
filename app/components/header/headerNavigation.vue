@@ -57,7 +57,8 @@ function closeMenu() {
     <ul class="navigation__list">
 
       <li class="navigation__item"
-      v-for="link, index in headerLinks" :key="index">
+      v-for="link, index in headerLinks" :key="index"
+      >
         <NuxtLink 
         class="navigation__link"
           :to="`#${link.path}`"

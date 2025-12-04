@@ -106,10 +106,7 @@ const initialSkills = [{
 },
 ]
 const skills = ref([]);
-const positions = [
-  { x: -100, y: Math.random() * 200 - 100 }, // слева
-  { x: 100, y: Math.random() * 200 - 100 }, // справа
-];
+
 
 // Функция для запуска анимации "слетания"
 function runAnimation() {

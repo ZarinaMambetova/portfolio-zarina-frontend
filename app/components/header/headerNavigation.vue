@@ -16,7 +16,7 @@ closeMenu()
   setTimeout(() => {
     // Возобновить анимации
     animationStore.resume()
-  }, 600)
+  }, 300)
 }
 
 const headerLinks = [{

@@ -35,16 +35,9 @@ const { isIntersecting: careerIntersecting } = useIntersectionObserver(
   (isIntersecting) => {
     if (isIntersecting && !isShowCareer.value && animationStore.active) {
       isShowCareer.value = true
-      console.log("isShowCareer", true)
     }
   }
 )
-
-// Для отладки - выводим в консоль
-onMounted(() => {
-  console.log('Skills ref:', skillsRef.value)
-  console.log('Career ref:', careerRef.value)
-})
 
 // Остальной код без изменений
 const isModalOpen = ref(false)
@@ -98,7 +91,8 @@ onUnmounted(() => {
     
             <section class="section home show-animate" id="home">
                 <div class="container home__container"  ref="homeRef">
-                    <div class="home__row" ><HomeWelcomeTitle  class="home__title"/>
+                    <div class="home__row" >
+                    <HomeWelcomeTitle  class="home__title"/>
                     <HomeWelcomeList class="home__code" />
                 </div>
                     
